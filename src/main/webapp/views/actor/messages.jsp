@@ -16,42 +16,28 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="actor.action.1" /></p>
+<h3><spring:message code="actor.messages" /></h3>
+
+<p><jstl:out value="${username}"/></p>
 
 <display:table
 	pagesize="10" name="messages" id="row"
-	requestURI="customer/messages.do" >
+	requestURI="actor/messages.do" >
 	
-	<display:column title="Editar">
-	<a href="customer/application/edit.do"><spring:message code="master.page.customer.action.2" /></a>
-	</display:column>
-	
-	<display:column	property ="date" titleKey="customer.date" />
-	
-	<display:column property="status"
-					titleKey="customer.status" />		
+	<display:column	property ="moment"
+					titleKey="actor.message.moment"/>
+					
+	<display:column	title="actor.message.subject">
+		<a href="message/show.do?messageId=${row.id}"><jstl:out value="${row.subject}" /></a>
+	</display:column>	
 							
 	<display:column property="offeredPrice"
 					titleKey="customer.offeredPrice" />
 					
-	<display:column title="Comments" >
-	<a href="customer/application/comments.do"><spring:message code="master.page.customer.action.3" /></a>
-	</display:column>	
-					
-	<display:column	titleKey="customer.handyWorkerMake">
-	<jstl:out value="${row.handyWorker.make}" />
-	</display:column>
 	
-		<display:column	titleKey="customer.handyWorkerScore">
-	<jstl:out value="${row.handyWorker.score}" />
+	<display:column	title="customer.fixUpTaskMaxPrice">
+		<jstl:out value="${row.fixUpTaks.maxPrice}" />
 	</display:column>
-	
-	<display:column	titleKey="customer.fixUpTaskDescription">
-	<jstl:out value="${row.fixUpTaks.description}" />
-	</display:column>
-	
-		<display:column	title="customer.fixUpTaskMaxPrice">
-	<jstl:out value="${row.fixUpTaks.maxPrice}" />
-	</display:column>														
+															
 </display:table>
 
