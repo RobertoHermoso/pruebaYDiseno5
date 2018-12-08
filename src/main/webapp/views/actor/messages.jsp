@@ -31,13 +31,17 @@
 		<a href="message/show.do?messageId=${row.id}"><jstl:out value="${row.subject}" /></a>
 	</display:column>	
 							
-	<display:column property="offeredPrice"
-					titleKey="customer.offeredPrice" />
+	<display:column	title="actor.name">
+		<jstl:out value="${row.sender.name}" />
+	</display:column>	
 					
-	
-	<display:column	title="customer.fixUpTaskMaxPrice">
-		<jstl:out value="${row.fixUpTaks.maxPrice}" />
+	<display:column>
+		<a href="message/new.do?messageId=${row.id}"><jstl:out value="actor.message.reply" /></a>
 	</display:column>
+	
+	<display:column>
+		<a href="message/delete.do?messageId=${row.id}"><jstl:out value="actor.message.delete" /></a>
+	</display:column>	
 															
 </display:table>
 
