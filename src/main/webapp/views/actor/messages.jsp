@@ -16,9 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<h3><spring:message code="actor.messages" /></h3>
-
-<p><jstl:out value="${username}"/></p>
+<h4><spring:message code="actor.logged" /><jstl:out value=" ${username}"/></h4>
 
 <display:table
 	pagesize="10" name="messages" id="row"
@@ -27,11 +25,11 @@
 	<display:column	property ="moment"
 					titleKey="actor.message.moment"/>
 					
-	<display:column	title="actor.message.subject">
+	<display:column	titleKey="actor.message.subject">
 		<a href="message/show.do?messageId=${row.id}"><jstl:out value="${row.subject}" /></a>
 	</display:column>	
 							
-	<display:column	title="actor.name">
+	<display:column	titleKey="actor.name">
 		<jstl:out value="${row.sender.name}" />
 	</display:column>	
 					
@@ -44,4 +42,6 @@
 	</display:column>	
 															
 </display:table>
+
+<p><a href="message/new.do>"><spring:message code="actor.message.new" /></a></p>
 

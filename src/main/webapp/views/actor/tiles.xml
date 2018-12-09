@@ -17,8 +17,18 @@
 <tiles-definitions>
 
 	<definition name="actor/messages" extends="master.page">	
-		<put-attribute name="title" value="Mail system" />
+		<put-attribute name="title" value="Messages" />
 		<put-attribute name="body" value="/views/actor/messages.jsp" />
+	</definition>
+	
+	<definition name="actor/message" extends="master.page">	
+		<put-attribute name="title" value="Message" />
+		<put-attribute name="body" value="/views/actor/message.jsp" />
+	</definition>
+	
+	<definition name="actor/newMssage" extends="master.page">	
+		<put-attribute name="title" value="New message" />
+		<put-attribute name="body" value="/views/actor/newMessage.jsp" />
 	</definition>
 	
 </tiles-definitions>
