@@ -63,10 +63,10 @@ public interface HandyWorkerRepository extends JpaRepository<HandyWorker, Intege
 	@Query("select c from FixUpTask c where c.ticker like '?1' or c.description like '?1' or c.address like '?1'")
 	public List<FixUpTask> getFixUpTaskByKeyWord(String keyWord);
 
-	@Query("select f from FixUpTask f join f.categories c where c.name='?1'")
+	@Query("select f from FixUpTask f join f.category c where c.name='?1'")
 	public List<FixUpTask> getFixUpTaskByCategory(String category);
 
-	@Query("select a from FixUpTask a join a.warranties b where b.title = ?1")
+	@Query("select a from FixUpTask a join a.warranty b where b.title = ?1")
 	public Collection<FixUpTask> getFixUpTasksByWarranty(String warranty);
 
 	@Query("select a from FixUpTask a where (a.maxPrice) between (select b.minPrice from Finder b where b.id = ?1) and (select c.maxPrice from Finder c where c.id = ?1) order by a.maxPrice")

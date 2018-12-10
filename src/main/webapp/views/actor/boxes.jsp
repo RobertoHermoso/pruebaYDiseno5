@@ -1,5 +1,5 @@
 <%--
- * action-2.jsp
+ * action-1.jsp
  *
  * Copyright (C) 2018 Universidad de Sevilla
  * 
@@ -16,4 +16,20 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="customer.action.2" /></p>
+<h4><spring:message code="actor.logged" /><jstl:out value=" ${username}"/></h4>
+
+<display:table
+	pagesize="10" name="boxes" id="row"
+	requestURI="actor/boxes.do" >
+	
+	<display:column	property ="name"
+					titleKey="actor.box.name"/>
+					
+	<display:column	titleKey="actor.messages">
+		<jstl:out value="${row.messages.size}" />
+	</display:column>	
+															
+</display:table>
+
+<p><a href="box/create.do"><spring:message code="actor.box.create" /></a></p>
+
