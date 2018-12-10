@@ -45,7 +45,7 @@
 		</display:column>
 	
 		<display:column>
-			<a href="box/edit.do?boxId${row.id}"><jstl:out value="actor.box.edit" /></a>
+			<a href="box/edit.do?boxId=${row.id}"><jstl:out value="actor.box.edit" /></a>
 		</display:column>	
 		
 		</jstl:otherwise>
