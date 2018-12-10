@@ -6,4 +6,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="comment.attachments" /></p>	
+<p><spring:message code="comment.attachments" /></p>
+
+<jstl:forEach var="attachment" items="attachments">
+			<jstl:out value="${attachment}" />
+			<br /> 
+	</jstl:forEach> 	
