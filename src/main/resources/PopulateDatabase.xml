@@ -292,23 +292,14 @@
 				<ref bean="application1" />
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean="category1" />
-				<ref bean="category4" />
-			</list>
-		</property>
+		<property name="category" ref="category1"/>
 		<property name="phases">
 			<list>
 				<ref bean="phase1" />
 				<ref bean="phase2" />
 			</list>
 		</property>
-		<property name="warranties">
-			<list>
-				<ref bean="warranty1" />
-			</list>
-		</property>
+		<property name="warranty" ref="warranty1"/>
 		<property name="complaints">
 			<list>
 				<ref bean="complaint1" />
@@ -331,23 +322,14 @@
 				<ref bean="application9" />
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean="category1" />
-				<ref bean="category2" />
-			</list>
-		</property>
+		<property name="category" ref="category2"/>
 		<property name="phases">
 			<list>
 				<ref bean="phase3" />
 				<ref bean="phase4" />
 			</list>
 		</property>
-		<property name="warranties">
-			<list>
-				<ref bean="warranty2" />
-			</list>
-		</property>
+		<property name="warranty" ref="warranty2"/>
 		<property name="complaints">
 			<list>
 				<ref bean="complaint3" />
@@ -370,23 +352,14 @@
 				<ref bean="application4" />
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean="category4" />
-				<ref bean="category2" />
-			</list>
-		</property>
+		<property name="category" ref="category4"/>
 		<property name="phases">
 			<list>
 				<ref bean="phase5" />
 				<ref bean="phase6" />
 			</list>
 		</property>
-		<property name="warranties">
-			<list>
-				<ref bean="warranty3" />
-			</list>
-		</property>
+		<property name="warranty" ref="warranty3"/>
 		<property name="complaints">
 			<list>
 				<ref bean="complaint5" />
@@ -408,23 +381,14 @@
 				<ref bean="application5" />		
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean="category1" />
-				<ref bean="category3" />
-			</list>
-		</property>
+		<property name="category" ref="category3"/>
 		<property name="phases">
 			<list>
 				<ref bean="phase7" />
 				<ref bean="phase8" />
 			</list>
 		</property>
-		<property name="warranties">
-			<list>
-				<ref bean="warranty4" />
-			</list>
-		</property>
+		<property name="warranty" ref="warranty4"/>
 		<property name="complaints">
 			<list>
 				<ref bean="complaint7" />
@@ -445,22 +409,13 @@
 				<ref bean="application6" />
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean="category1" />
-				<ref bean="category3" />
-			</list>
-		</property>
+		<property name="category" ref="category3"/>
 		<property name="phases">
 			<list>
 				<ref bean="phase9" />
 			</list>
 		</property>
-		<property name="warranties">
-			<list>
-				<ref bean="warranty5" />
-			</list>
-		</property>
+		<property name="warranty" ref="warranty5"/>
 		<property name="complaints">
 			<list>
 				<ref bean="complaint9" />
@@ -481,22 +436,13 @@
 				<ref bean="application7" />
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean="category2" />
-				<ref bean="category4" />
-			</list>
-		</property>
+		<property name="category" ref="category4"/>
 		<property name="phases">
 			<list>
 				<ref bean="phase10" />
 			</list>
 		</property>
-		<property name="warranties">
-			<list>
-				<ref bean="warranty6" />
-			</list>
-		</property>
+		<property name="warranty" ref="warranty6"/>
 		<property name="complaints">
 			<list>
 				<ref bean="complaint10" />
@@ -517,22 +463,13 @@
 				<ref bean="application8" />
 			</list>
 		</property>
-		<property name="categories">
-			<list>
-				<ref bean="category2" />
-				<ref bean="category4" />
-			</list>
-		</property>
+		<property name="category" ref="category2"/>
 		<property name="phases">
 			<list>
 				<ref bean="phase11" />
 			</list>
 		</property>
-		<property name="warranties">
-			<list>
-				<ref bean="warranty7" />
-			</list>
-		</property>
+		<property name="warranty" ref="warranty7"/>
 		<property name="complaints">
 			<list>
 				<ref bean="complaint11" />

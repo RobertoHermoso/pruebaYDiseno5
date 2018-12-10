@@ -16,4 +16,21 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="customer.action.1" /></p>
+<p><spring:message code="administrator.computedScore" /></p>
+
+<security:authorize access="hasRole('ADMIN')">
+
+<display:table name="scores" id="computedScores" requestURI="${computedScore/administrator/list.do}"
+	pagesize="5" class="displaytag">
+	  <display:column property="endorser" titleKey="administrator.scoreEndorser" sortable="true">
+      		<jstl:out value="${computedScores.key}" />
+      </display:column>
+      
+       <display:column property="score" titleKey="administrator.scoreValue" sortable="true">
+      		<jstl:out value="${computedScores.value}" />
+      </display:column>
+</display:table>
+
+</security:authorize>
+
+
