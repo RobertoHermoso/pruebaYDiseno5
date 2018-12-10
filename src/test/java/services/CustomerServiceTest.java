@@ -116,6 +116,8 @@ public class CustomerServiceTest extends AbstractTest {
 	@Test
 	public void testCreateFixUpTask() {
 		super.authenticate("PacoCustomer");
+		Customer customer = new Customer();
+		customer = this.customerService.getCustomerByUsername("PacoCustomer");
 
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, 2018);
@@ -123,16 +125,11 @@ public class CustomerServiceTest extends AbstractTest {
 		cal.set(Calendar.DAY_OF_MONTH, 12);
 		Date realizationTime = cal.getTime();
 
-		List<Warranty> warranties = new ArrayList<Warranty>();
-		Warranty warranty = this.warrantyService.create("titulo", new ArrayList<String>(), new ArrayList<String>(), true);
-		Warranty warrantySaved = this.warrantyService.save(warranty);
-		warranties.add(this.warrantyService.findOne(warrantySaved.getId()));
-
-		List<Category> categories = (List<Category>) this.fixUpTaskService.findAll().get(0).getCategories();
-
-		FixUpTask fix = this.fixUpTaskService.create("Description", "Direction", 5., realizationTime, warranties, new ArrayList<Phase>(), categories, new ArrayList<Complaint>(), new ArrayList<Application>());
+		Warranty warranty = this.warrantyService.create("tituloEjemplo", new ArrayList<String>(), new ArrayList<String>(), true);
+		Warranty warrantyNew = this.warrantyService.save(warranty);
+		Category category = this.fixUpTaskService.findAll().get(0).getCategory();
+		FixUpTask fix = this.fixUpTaskService.create("Description", "Direction", 5., realizationTime, warrantyNew, new ArrayList<Phase>(), category, new ArrayList<Complaint>(), new ArrayList<Application>());
 		FixUpTask fixSaved = this.fixUpTaskService.save(fix);
-
 		Assert.notNull(this.fixUpTaskService.findOne(fixSaved.getId()));
 
 		super.authenticate(null);
