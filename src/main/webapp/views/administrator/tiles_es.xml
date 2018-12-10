@@ -21,4 +21,9 @@
 		<put-attribute name="body" value="/views/administrator/statistics.jsp" />
 	</definition>
 	
+	<definition name="/customersAboveAverage/administrator/list.do" extends="master.page">	
+		<put-attribute name="title" value="Clientes sobre la media" />
+		<put-attribute name="body" value="/views/administrator/customersAboveAverage.jsp" />
+	</definition>
+	
 </tiles-definitions>

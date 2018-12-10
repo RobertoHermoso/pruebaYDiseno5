@@ -21,9 +21,10 @@
 		<put-attribute name="body" value="/views/administrator/statistics.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-2" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Action 2" />
-		<put-attribute name="body" value="/views/administrator/action-2.jsp" />
+
+	<definition name="/customersAboveAverage/administrator/list.do" extends="master.page">	
+		<put-attribute name="title" value="Customers above Average" />
+		<put-attribute name="body" value="/views/administrator/customersAboveAverage.jsp" />
 	</definition>
 	
 </tiles-definitions>

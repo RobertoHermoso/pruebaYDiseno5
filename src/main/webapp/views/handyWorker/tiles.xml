@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="/application/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="My Applications" />
+		<put-attribute name="body" value="/views/handy-worker/applications.jsp" />
+	</definition>
+	
+	<definition name="/comment/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Comments" />
+		<put-attribute name="body" value="/views/handy-worker/comments.jsp" />
+	</definition>
+	
+	<definition name="/fixUpTask/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Fix Up Tasks" />
+		<put-attribute name="body" value="/views/handy-worker/fixUpTask.jsp" />
+	</definition>
+	
+	<definition name="/comment/handyWorker/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Create a Comment" />
+		<put-attribute name="body" value="/views/handy-worker/addComment.jsp" />
+	</definition>
+	
+	<definition name="/application/handyWorker/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Create Application" />
+		<put-attribute name="body" value="/views/handy-worker/createApplication.jsp" />
+	</definition>
+	
+</tiles-definitions>

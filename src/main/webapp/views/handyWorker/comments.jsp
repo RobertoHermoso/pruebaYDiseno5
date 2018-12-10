@@ -1,5 +1,5 @@
 <%--
- * action-1.jsp
+ * action-2.jsp
  *
  * Copyright (C) 2018 Universidad de Sevilla
  * 
@@ -16,4 +16,24 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="administrator.action.1" /></p>
+<p><spring:message code="handyWorker.comment.list" /></p>
+
+<security:authorize access="hasRole('HANDYWORKER')">
+	<jstl:forEach var="comment" items="comments">
+			<jstl:out value="${comment}" />
+			<br />
+	</jstl:forEach>
+	
+				
+	<spring:url var="createCommentUrl" value="/comment/handyWorker/edit.do?applicationId={appId}">
+		<spring:param name="appId" value="${application.id}"/>
+	</spring:url>
+	
+	<a href="${createCommentUrl}">
+		<spring:message code="comments.create" />			
+	</a>
+
+
+</security:authorize>
+
+
