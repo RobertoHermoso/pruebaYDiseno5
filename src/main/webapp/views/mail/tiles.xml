@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!-- 
- * tiles_es.xml
+ * tiles.xml
  *
  * Copyright (C) 2018 Universidad de Sevilla
  * 
@@ -13,31 +13,31 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
-      
+       
 <tiles-definitions>
 
-	<definition name="actor/messages" extends="master.page">	
-		<put-attribute name="title" value="Mensajes" />
+	<definition name="/mail/messages" extends="master.page">	
+		<put-attribute name="title" value="Messages" />
 		<put-attribute name="body" value="/views/actor/messages.jsp" />
 	</definition>
 	
-	<definition name="actor/message" extends="master.page">	
-		<put-attribute name="title" value="Mensaje" />
+	<definition name="/mail/message" extends="master.page">	
+		<put-attribute name="title" value="Message" />
 		<put-attribute name="body" value="/views/actor/message.jsp" />
 	</definition>
 	
-	<definition name="actor/newMssage" extends="master.page">	
-		<put-attribute name="title" value="Nuevo mensaje" />
+	<definition name="/mail/newMessage" extends="master.page">	
+		<put-attribute name="title" value="New message" />
 		<put-attribute name="body" value="/views/actor/newMessage.jsp" />
 	</definition>
 	
-	<definition name="actor/boxes" extends="master.page">	
-		<put-attribute name="title" value="Bandejas" />
+	<definition name="/mail/boxes" extends="master.page">	
+		<put-attribute name="title" value="Boxes" />
 		<put-attribute name="body" value="/views/actor/boxes.jsp" />
 	</definition>
 	
-	<definition name="actor/newEditBox" extends="master.page">	
-		<put-attribute name="title" value="Bandeja" />
+	<definition name="/mail/newEditBox" extends="master.page">	
+		<put-attribute name="title" value="Box" />
 		<put-attribute name="body" value="/views/actor/newEditBox.jsp" />
 	</definition>
 	
