@@ -10,8 +10,7 @@
 
 <security:authorize access="hasRole('CUSTOMER')">
 
-<form:form action="/complaint/customer/edit.do?fixUpTaskId={fixId}" modelAttribute="complaint">
-		<spring:param name="fixId" value="${fixUpTaskId}"/>
+<form:form action="/complaint/customer/edit.do" modelAttribute="complaint">
 
 		<!-- Hidden Attributes -->
 		<form:hidden path="id"/>
@@ -27,16 +26,8 @@
 		<form:errors cssClass="error" path="description" />
 		
 			
-		<!-- Description -->
-		<form:label path="description">	<!-- Tiles -->
-			<spring:message code="fixUpTask.description" />	
-		</form:label>
-		<form:textarea path="description"/>
-		<form:errors cssClass="error" path="description" />
-		
-			
 		<!-- Attachments -->
-		<form:label path="attachments">	<!-- Tiles --> <!-- ¿Esto se puede hacer? Es una lista de Strings -->
+		<form:label path="attachments">	<!-- Tiles Revisar -->
 			<spring:message code="complaint.attachments" />	
 		</form:label>
 		<form:textarea path="attachments"/>
