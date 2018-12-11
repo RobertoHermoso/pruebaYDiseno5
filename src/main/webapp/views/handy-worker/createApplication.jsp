@@ -9,9 +9,10 @@
 <p><spring:message code="createApplication.title" /></p>		
 
 <security:authorize access="hasRole('HANDYWORKER')">
-<!-- Modificar Tiles -->
+
 	<form:form action="application/handyWorker/edit.do" modelAttribute="application">
-	
+		
+		<!-- Hidden Attributes -->	
 		<form:hidden path="id" />
 		<form:hidden path="version" />
 		<form:hidden path="moment" />
@@ -19,7 +20,7 @@
 		<form:hidden path="fixUpTask" />
 		<form:hidden path="handyWorker" />
 		
-		
+		<!-- Offered Prices -->
 		<form:label path="offeredPrice">
 				<spring:message code="createApplication.offeredPrice" />	
 		</form:label>
