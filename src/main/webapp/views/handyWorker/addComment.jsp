@@ -8,14 +8,14 @@
 
 <p><spring:message code="comment.addComment" /></p>			
 
-<security:authorize access="hasRole('CUSTOMER')">
+<security:authorize access="hasRole('HANDYWORKER')">
 
-<form:form action="comment/customer/edit.do" modelAttribute="comment" >
-	
+<form:form action="comment/handyWorker/edit.do" modelAttribute="comment" >
+
 	<form:label path="text">
-			<spring:message code="comment.text" />		
+			<spring:message code="comment.text" />	
 	</form:label>
-	<form:textarea path="text" placeholder=<spring:message code="comment.writeComment"/> />		
+	<form:textarea path="text" placeholder=<spring:message code="comment.writeComment" /> />		
 	<form:errors cssClass="error" path="text" />
 	<br />
 	

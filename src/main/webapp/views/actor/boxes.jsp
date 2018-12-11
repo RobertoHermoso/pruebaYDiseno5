@@ -28,6 +28,28 @@
 	<display:column	titleKey="actor.messages">
 		<jstl:out value="${row.messages.size}" />
 	</display:column>	
+	
+	<jstl:choose>
+		<jstl:when test="${row.isSystem}"></jstl:when>
+		
+		<display:column>
+		</display:column>
+		
+		<display:column>
+		</display:column>
+		
+		<jstl:otherwise>
+		
+		<display:column>
+			<a href="box/delete.do?boxId=${row.id}"><jstl:out value="actor.box.delete" /></a>
+		</display:column>
+	
+		<display:column>
+			<a href="box/edit.do?boxId=${row.id}"><jstl:out value="actor.box.edit" /></a>
+		</display:column>	
+		
+		</jstl:otherwise>
+	</jstl:choose>
 															
 </display:table>
 

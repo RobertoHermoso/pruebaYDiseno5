@@ -85,8 +85,8 @@
 	
 	<input type="submit" name="create" value="<spring:message code="creditCard.create"/>" />		
 	
-	<input type="submit" name="cancel" value="<spring:message code="customer.cancel" />"
-		onClick="javascript: relativeRedir('customer/application/comment.do');" />
+	<input type="submit" name="cancel" value="<spring:message code="creditCard.cancel"/>" />	
+
 </form:form>
 
 </security:authorize>

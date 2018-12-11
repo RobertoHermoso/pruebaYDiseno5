@@ -11,27 +11,27 @@
 <security:authorize access="hasRole('CUSTOMER')">
 	<form:form action="application/customer/edit.do" modelAttribute="application">
 		<form:hidden path="id"/>
-		<form:hidden path="version" />
+		<form:hidden path="version" /> 
 		<form:hidden path="moment" />
 		<form:hidden path="offeredPrice" />
 		<form:hidden path="comments" />
 		<form:hidden path="fixUpTask" />
-		<form:hidden path="handyWorker" />
+		<form:hidden path="handyWorker" /> 
 		
-		
+		 
 		 <form:label path="status">
 			<spring:message code="customer.application.status" />		
 		</form:label>
 		
 		<form:select path="status">
 			<form:options
-				itemLabel="${customer.application.accepted}"			
-				itemValue="ACCEPTED" />								<!-- Spring:Message -->	
+				itemLabel=<spring:message code="customer.application.accepted" />			
+				itemValue="ACCEPTED" />									
 			<form:options	
-				itemLabel="${customer.application.pending}"		
+				itemLabel=<spring:message code="customer.application.pending" />
 				itemValue="PENDING" />	
 			<form:options
-				itemLabel="${customer.application.rejected}"		
+				itemLabel=<spring:message code="customer.application.rejected" />
 				itemValue="REJECTED" />
 		</form:select>
 
@@ -40,8 +40,7 @@
 		
 		<input type="submit" name="create" value="<spring:message code="application.create"/>" />		
 	
-		<input type="submit" name="cancel" value="<spring:message code="customer.cancel" />"
-		onClick="javascript: relativeRedir('customer/application.do');" />
+		<input type="submit" name="cancel" value="<spring:message code="application.cancel"/>" />	
 
 	</form:form>
 </security:authorize>

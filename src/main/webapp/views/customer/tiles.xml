@@ -8,13 +8,13 @@
  * The use of this project is hereby constrained to the conditions of the 
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
- -->
-
+ --> 
+ 
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
-<tiles-definitions>
+<tiles-definitions> 
 
 	<definition name="/application/customer/list.do" extends="master.page">	
 		<put-attribute name="title" value="My Applications" />
@@ -39,6 +39,21 @@
 	<definition name="/application/customer/edit.do" extends="master.page">	
 		<put-attribute name="title" value="Change Status" />
 		<put-attribute name="body" value="/views/customer/changeStatus.jsp" />
+	</definition>
+	
+	<definition name="/fixUpTask/customer/list.do" extends="master.page">	
+		<put-attribute name="title" value="My Fix Up Tasks" />
+		<put-attribute name="body" value="/views/customer/fixUpTask.jsp" />
+	</definition>
+	
+	<definition name="/fixUpTask/customer/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Create a Fix Up Task" />
+		<put-attribute name="body" value="/views/customer/createFixUpTask.jsp" />
+	</definition>
+	
+	<definition name="/warranty/customer/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Warranty" />
+		<put-attribute name="body" value="/views/customer/warranty.jsp" />
 	</definition>
 	
 </tiles-definitions>

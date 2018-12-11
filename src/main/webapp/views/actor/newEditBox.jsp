@@ -18,18 +18,12 @@
 
 <h4><spring:message code="actor.logged" /><jstl:out value=" ${username}"/></h4>
 
-<form:form modelAttribute="message" acºtion="message/new.do">
-	<spring:message code="actor.message.title"/>:
-	<form:input path="subject"/>
-	<spring:message code="actor.name"/>:
-	<form:select path="receiver">
-		<form:options items="${actors}" itemLabel="name" itemValue="id"/>
-	</form:select>
-	<spring:message code="actor.message"/>:
-	<form:textarea path="body"/>
+<form:form modelAttribute="box" action="box/save.do">
+	<spring:message code="actor.box.name"/>:
+	<form:input path="name" value="${box.name}"/>
 	<form:hidden path="id"/>
 	<form:hidden path="version"/>
-	<input type="submit" name = "save" value="<spring:message code="actor.send"/>"/>
+	<input type="submit" name = "save" value="<spring:message code="actor.save"/>"/>
 </form:form>
 
-<p><a href="actor/mail.do"><spring:message code="actor.back"/></a></p>
+<p><a href="actor/mail.do"><spring:message code="actor.cancel"/></a></p>

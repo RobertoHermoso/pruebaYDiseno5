@@ -7,25 +7,24 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="customer.comment.list" /></p>
-
 <security:authorize access="hasRole('CUSTOMER')">
-	<jstl:forEach var="comment" items="comments">
-			<jstl:out value="${comment}" />
-			<br /> 
-	</jstl:forEach> 
+
+	<h3><jstl:out value="${warranty.title }" /></h3>
 	
-	<!-- <jstl:if test="${application.status=='ACCEPTED'}">  -->
-			
-		<spring:url var="createCommentUrl" value="/comment/customer/edit.do?applicationId={appId}">
-				<spring:param name="appId" value="${application.id}"/>
-		</spring:url>
+
+	<h4><spring:message code="warranty.customer.terms"/></h4> <!--Añadir --><!-- Tiles -->
+	<br />
+		<jstl:forEach var="term" items="terms">
+				<jstl:out value="${term}" />
+				<br />
+		</jstl:forEach>
+	<br />
 	
-		<a href="${createCommentUrl}">
-				<spring:message code="comments.create" />			
-		</a>
-	
-	<!-- </jstl:if>	-->
-	
+	<h4><spring:message code="warranty.customer.laws"/></h4> <!--Añadir --><!-- Tiles -->
+	<br />
+		<jstl:forEach var="law" items="laws">
+				<jstl:out value="${law}" />
+				<br />
+		</jstl:forEach>
 
 </security:authorize>
