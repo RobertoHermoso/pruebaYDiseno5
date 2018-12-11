@@ -18,22 +18,20 @@
 
 <security:authorize access="sAuthenticated()">
 
-<spring:url var="showActor" value="/actor/show.do?actorId={actorId}">
-	<spring:param name="actorId" value="${actorId}"/>
-</spring:url>
+<spring:url var="showActor" value="/actor/authenticated/edit.do"/>
 
 <h4><spring:message code="actor.logged" /><a href="${showActor}"><jstl:out value=" ${username}"/></a></h4>
 
 <display:table
 	pagesize="10" name="messages" id="row"
-	requestURI="actor/messages.do" >
+	requestURI="messages/authenticated/list.do" >
 	
 	<display:column	property ="moment"
 					titleKey="mail.message.moment"/>
 					
 	<display:column	titleKey="mail.message.subject">
 	
-		<spring:url var="showMessage" value="/message/show.do?messageId={rowId}">
+		<spring:url var="showMessage" value="/message/authenticated/show.do?messageId={rowId}">
 			<spring:param name="rowId" value="${row.id}"/>
 		</spring:url>
 	
@@ -45,7 +43,7 @@
 	</display:column>	
 					
 	<display:column titleKey="">
-		<spring:url var="replyMessage" value="/message/new.do?messageId={rowId}">
+		<spring:url var="replyMessage" value="/message/authenticated/new.do?messageId=*{rowId}">
 			<spring:param name="rowId" value="${row.id}"/>
 		</spring:url>
 	
@@ -53,7 +51,7 @@
 	</display:column>
 	
 	<display:column titleKey="">
-		<spring:url var="deleteMessage" value="/message/delete.do?messageId={rowId}">
+		<spring:url var="deleteMessage" value="/message/authenticated/delete.do?messageId={rowId}">
 			<spring:param name="rowId" value="${row.id}"/>
 		</spring:url>
 	
@@ -62,11 +60,11 @@
 															
 </display:table>
 
-<spring:url var="newMessage" value="/message/new.do"/>
+<spring:url var="newMessage" value="/message/authenticated/new.do"/>
 
 <p><a href="${newMessage}"><spring:message code="mail.message.new" /></a></p>
 
-<spring:url var="mail" value="/actor/mail.do"/>
+<spring:url var="mail" value="/box/authenticated/list.do"/>
 
 <p><a href="${mail}"><spring:message code="mail.back" /></a></p>
 

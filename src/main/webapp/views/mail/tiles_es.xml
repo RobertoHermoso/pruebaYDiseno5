@@ -18,27 +18,27 @@
 
 	<definition name="/mail/messages" extends="master.page">	
 		<put-attribute name="title" value="Mensajes" />
-		<put-attribute name="body" value="/views/actor/messages.jsp" />
+		<put-attribute name="body" value="/views/mail/messages.jsp" />
 	</definition>
 	
 	<definition name="/mail/message" extends="master.page">	
 		<put-attribute name="title" value="Mensaje" />
-		<put-attribute name="body" value="/views/actor/message.jsp" />
+		<put-attribute name="body" value="/views/mail/message.jsp" />
 	</definition>
 	
 	<definition name="/mail/newMessage" extends="master.page">	
 		<put-attribute name="title" value="Nuevo mensaje" />
-		<put-attribute name="body" value="/views/actor/newMessage.jsp" />
+		<put-attribute name="body" value="/views/mail/newMessage.jsp" />
 	</definition>
 	
 	<definition name="/mail/boxes" extends="master.page">	
 		<put-attribute name="title" value="Bandejas" />
-		<put-attribute name="body" value="/views/actor/boxes.jsp" />
+		<put-attribute name="body" value="/views/mail/boxes.jsp" />
 	</definition>
 	
 	<definition name="/mail/newEditBox" extends="master.page">	
 		<put-attribute name="title" value="Bandeja" />
-		<put-attribute name="body" value="/views/actor/newEditBox.jsp" />
+		<put-attribute name="body" value="/views/mail/newEditBox.jsp" />
 	</definition>
 	
 </tiles-definitions>

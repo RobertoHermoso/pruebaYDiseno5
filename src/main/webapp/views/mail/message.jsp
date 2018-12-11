@@ -18,9 +18,7 @@
 
 <security:authorize access="sAuthenticated()">
 
-<spring:url var="showActor" value="/actor/show.do?actorId={actorId}">
-	<spring:param name="actorId" value="${actorId}"/>
-</spring:url>
+<spring:url var="showActor" value="/actor/authenticated/edit.do"/>
 
 <h4><spring:message code="actor.logged" /><a href="${showActor}"><jstl:out value=" ${username}"/></a></h4>
 
@@ -32,7 +30,7 @@
 
 <p><spring:message code="mail.message.sender"/></p>
 
-<spring:url var="moveMessage" value="/message/move.do"/>
+<spring:url var="moveMessage" value="/message/authenticated/move.do"/>
 
 <form name="move" id="move" action="${moveMessage}" method="get">
 	<input type="text" id="messageId" name="messageId" value="${message.id}" hidden=""/>
@@ -45,10 +43,10 @@
 	<input type="submit" name = "move" value="<spring:message code="mail.move"/>"/>
 </form>
 
-<spring:url var="replyMessage" value="/message/new.do?messageId={messageId}">
+<spring:url var="replyMessage" value="/message/authenticated/new.do?messageId={messageId}">
 	<spring:param name="messageId" value="${message.id}"/>
 </spring:url>
-<spring:url var="deleteMessage" value="/message/delete.do?messageId={messageId}">
+<spring:url var="deleteMessage" value="/message/authenticated/delete.do?messageId={messageId}">
 	<spring:param name="messageId" value="${message.id}"/>
 </spring:url>
 
@@ -59,7 +57,7 @@
 
 <p><jstl:out value="${message.body}"/></p>
 
-<spring:url var="mail" value="/actor/mail.do"/>
+<spring:url var="mail" value="/box/authenticated/list.do"/>
 
 <p><a href="${mail}"><spring:message code="mail.back"/></a></p>
 

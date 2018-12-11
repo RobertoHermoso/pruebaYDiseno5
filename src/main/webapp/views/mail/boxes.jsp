@@ -18,18 +18,16 @@
 
 <security:authorize access="sAuthenticated()">
 
-<spring:url var="showActor" value="/actor/show.do?actorId={actorId}">
-	<spring:param name="actorId" value="${actorId}"/>
-</spring:url>
+<spring:url var="showActor" value="/actor/authenticated/edit.do"/>
 
 <h4><spring:message code="actor.logged" /><a href="${showActor}"><jstl:out value=" ${username}"/></a></h4>
 
 <display:table
 	pagesize="10" name="boxes" id="row"
-	requestURI="actor/boxes.do" >
+	requestURI="box/authenticated/list.do" >
 	
 	<display:column titleKey="mail.box.name">
-		<spring:url var="showBox" value="/box/show.do?boxId={boxId}">
+		<spring:url var="showBox" value="/messages/authenticated/list.do?boxId={boxId}">
 			<spring:param name="boxId" value="${row.id}"/>
 		</spring:url>
 		
@@ -52,7 +50,7 @@
 		<jstl:otherwise>
 		
 		<display:column titleKey="">
-			<spring:url var="deleteBox" value="/box/delete.do?boxId={boxId}">
+			<spring:url var="deleteBox" value="/box/authenticated/delete.do?boxId={boxId}">
 				<spring:param name="boxId" value="${row.id}"/>
 			</spring:url>
 		
@@ -60,7 +58,7 @@
 		</display:column>
 	
 		<display:column titleKey="">
-			<spring:url var="editBox" value="/box/edit.do?boxId={boxId}">
+			<spring:url var="editBox" value="/box/authenticated/edit.do?boxId={boxId}">
 				<spring:param name="boxId" value="${row.id}"/>
 			</spring:url>
 		
@@ -72,7 +70,7 @@
 															
 </display:table>
 
-<spring:url var="newBox" value="/box/save.do"/>
+<spring:url var="newBox" value="/box/authenticated/create.do"/>
 
 <p><a href="${newBox}"><spring:message code="mail.box.new" /></a></p>
 

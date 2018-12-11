@@ -18,17 +18,15 @@
 
 <security:authorize access="sAuthenticated()">
 
-<spring:url var="showActor" value="/actor/show.do?actorId={actorId}">
-	<spring:param name="actorId" value="${actorId}"/>
-</spring:url>
+<spring:url var="showActor" value="/actor/authenticated/edit.do"/>
 
 <h4><spring:message code="actor.logged" /><a href="${showActor}"><jstl:out value=" ${username}"/></a></h4>
 
-<spring:url var="boxSave" value="/box/save.do"/>
+<spring:url var="boxSave" value="/box/authenticated/save.do"/>
 <form:form modelAttribute="box" action="${boxSave}">
 	<spring:message code="mail.box.name"/>:<form:input path="name" value="${box.name}"/>
 	
-	<jstl:if test="${box.name.lenght()>0}">
+	<jstl:if test="${box.id!=0}">
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
 	</jstl:if>
@@ -36,7 +34,7 @@
 	<input type="submit" name = "save" value="<spring:message code="mail.save"/>"/>
 </form:form>
 
-<spring:url var="mail" value="/actor/mail.do"/>
+<spring:url var="mail" value="/box/authenticated/list.do"/>
 
 <p><a href="${mail}"><spring:message code="mail.cancel"/></a></p>
 
