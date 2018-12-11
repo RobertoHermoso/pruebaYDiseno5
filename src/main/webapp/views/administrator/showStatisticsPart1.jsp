@@ -17,8 +17,20 @@
       		<jstl:out value="${computedStatistics1.key}" />
       </display:column>
       
-       <display:column property="valueStatistics" titleKey="administrator.scoreValueBasic" sortable="true">
-      		<jstl:out value="${computedStatistics1.value}" />
+      <display:column property="valueStatistics" titleKey="administrator.avegareBasic" sortable="true">
+      		<jstl:out value="${computedStatistics1.values.get(0)}" />
+      </display:column>
+      
+      <display:column property="valueStatistics" titleKey="administrator.minimumBasic" sortable="true">
+      		<jstl:out value="${computedStatistics1.values.get(1)}" />
+      </display:column>
+      
+      <display:column property="valueStatistics" titleKey="administrator.maximumBasic" sortable="true">
+      		<jstl:out value="${computedStatistics1.values.get(2)}" />
+      </display:column>
+      
+      <display:column property="valueStatistics" titleKey="administrator.desviationBasic" sortable="true">
+      		<jstl:out value="${computedStatistics1.values.get(3)}" />
       </display:column>
 </display:table>
 
