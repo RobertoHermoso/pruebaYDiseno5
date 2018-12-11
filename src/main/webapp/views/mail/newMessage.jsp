@@ -16,20 +16,29 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<h4><spring:message code="actor.logged" /><jstl:out value=" ${username}"/></h4>
+<security:authorize access="sAuthenticated()">
 
-<form:form modelAttribute="message" acºtion="message/new.do">
-	<spring:message code="actor.message.title"/>:
-	<form:input path="subject"/>
-	<spring:message code="actor.name"/>:
+<spring:url var="showActor" value="/actor/show.do?actorId={actorId}">
+	<spring:param name="actorId" value="${actorId}"/>
+</spring:url>
+
+<h4><spring:message code="actor.logged" /><a href="${showActor}"><jstl:out value=" ${username}"/></a></h4>
+
+<form:form modelAttribute="message" action="/message/new.do">
+	<spring:message code="mail.message.subject"/>:<form:input path="subject"/>
+	
+	<spring:message code="mail.message.receiver"/>:
 	<form:select path="receiver">
 		<form:options items="${actors}" itemLabel="name" itemValue="id"/>
 	</form:select>
-	<spring:message code="actor.message"/>:
-	<form:textarea path="body"/>
-	<form:hidden path="id"/>
-	<form:hidden path="version"/>
-	<input type="submit" name = "save" value="<spring:message code="actor.send"/>"/>
+	
+	<spring:message code="mail.message"/>:<form:textarea path="body"/>
+
+	<input type="submit" name = "save" value="<spring:message code="mail.message.send"/>"/>
 </form:form>
 
-<p><a href="actor/mail.do"><spring:message code="actor.back"/></a></p>
+<spring:url var="mail" value="/actor/mail.do"/>
+
+<p><a href="${mail}"><spring:message code="mail.cancel"/></a></p>
+
+</security:authorize>

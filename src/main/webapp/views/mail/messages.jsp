@@ -25,13 +25,13 @@
 <h4><spring:message code="actor.logged" /><a href="${showActor}"><jstl:out value=" ${username}"/></a></h4>
 
 <display:table
-	pagesize="5" name="messages" id="row"
+	pagesize="10" name="messages" id="row"
 	requestURI="actor/messages.do" >
 	
 	<display:column	property ="moment"
-					titleKey="actor.message.moment"/>
+					titleKey="mail.message.moment"/>
 					
-	<display:column	titleKey="actor.message.subject">
+	<display:column	titleKey="mail.message.subject">
 	
 		<spring:url var="showMessage" value="/message/show.do?messageId={rowId}">
 			<spring:param name="rowId" value="${row.id}"/>
@@ -40,7 +40,7 @@
 		<a href="${showMessage}"><jstl:out value="${row.subject}" /></a>
 	</display:column>	
 							
-	<display:column	titleKey="actor.name">
+	<display:column	titleKey="mail.message.sender">
 		<jstl:out value="${row.sender.name}" />
 	</display:column>	
 					
@@ -49,7 +49,7 @@
 			<spring:param name="rowId" value="${row.id}"/>
 		</spring:url>
 	
-		<a href="${replyMessage}"><jstl:out value="actor.message.reply" /></a>
+		<a href="${replyMessage}"><spring:message code="mail.message.reply"/></a>
 	</display:column>
 	
 	<display:column titleKey="">
@@ -57,13 +57,17 @@
 			<spring:param name="rowId" value="${row.id}"/>
 		</spring:url>
 	
-		<a href="${deleteMessage}"><jstl:out value="actor.message.delete" /></a>
+		<a href="${deleteMessage}"><spring:message code="mail.message.delete"/></a>
 	</display:column>	
 															
 </display:table>
 
 <spring:url var="newMessage" value="/message/new.do"/>
 
-<p><a href="${newMessage}"><spring:message code="actor.message.new" /></a></p>
+<p><a href="${newMessage}"><spring:message code="mail.message.new" /></a></p>
+
+<spring:url var="mail" value="/actor/mail.do"/>
+
+<p><a href="${mail}"><spring:message code="mail.back" /></a></p>
 
 </security:authorize>
