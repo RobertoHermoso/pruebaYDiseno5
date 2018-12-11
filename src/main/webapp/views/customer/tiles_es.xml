@@ -56,4 +56,14 @@
 		<put-attribute name="body" value="/views/customer/warranty.jsp" />
 	</definition>
 	
+	<definition name="/warranty/customer/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Mostrar aprobaciones" />
+		<put-attribute name="body" value="/views/customer/listEndorsment.jsp" />
+	</definition>
+	
+	<definition name="/warranty/customer/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Editar aprobaciones" />
+		<put-attribute name="body" value="/views/customer/editEndorsment.jsp" />
+	</definition>
+	
 </tiles-definitions>

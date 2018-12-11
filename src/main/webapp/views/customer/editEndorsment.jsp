@@ -18,7 +18,7 @@
 	<form:hidden path ="writtenBy"/>
 	
 	<form:label path="comments">
-		<spring:message code="endorsment.moment" />
+		<spring:message code="endorsment.comments" />
 	</form:label>
 	<form:textarea path="comments"/>
 	<form:errors cssClass="error" path="comments"/>
