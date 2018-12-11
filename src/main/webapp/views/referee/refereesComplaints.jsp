@@ -14,6 +14,16 @@
 	
 	<display:column titleKey="complaint.report">
 	
+	<jstl:set var="reportsSize" value="${row.reports.size()}" />
+				<spring:url var="reportsUrl" value="/report/list.do?complaintnId={compId}">
+							<spring:param name="compId" value="${row.id}"/>
+				</spring:url>
+				<a href="${reportsUrl}">
+							<spring:message var ="viewReports1" code="complaint.viewReports" />
+							<jstl:out value="$viewReports1((${reportsSize})" />		
+				</a>
+	
+	
 	</display:column>
 	
 	<display:column property="ticker" titleKey="complaint.ticker" /> 
@@ -31,7 +41,7 @@
 				</spring:url>
 				<a href="${attachmentsUrl}">
 							<spring:message var ="viewAttachments1" code="complaint.viewAttachments" />
-							<jstl:out value="$viewAttachments1}(${attachmentsSize})" />		
+							<jstl:out value="$viewAttachments1(${attachmentsSize})" />		
 				</a>
 		</display:column>
 	
