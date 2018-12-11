@@ -8,12 +8,12 @@
 
 <p><spring:message code="note.comment.create" /></p>
 
-<form:form action="report/note/comment/edit.do?" modelAttribute="comment">
+<form:form action="report/note/comment/edit.do?" modelAttribute="comments">
 
 
-	<form:label path="comment" ><spring:message code="note.comment" />: </form:label>
-	<form:textarea path="comment" />
-	<form:errors path="comment" />
+	<form:label path="comments" ><spring:message code="note.comments" />: </form:label>
+	<form:input path="comments" />
+	<form:errors path="comments" />
 	<br/>
 	
 	

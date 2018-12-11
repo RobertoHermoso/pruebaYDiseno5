@@ -10,7 +10,7 @@
 
 <security:authorize access="hasRole('HANDYWORKER')">
 
-	<spring:url var="finderUrl" value="http://www.acme.com/workPlan/handyWorker/list.do" />
+	<spring:url var="finderUrl" value="/workPlan/handyWorker/list.do" />
 	
 	<a href="${finderUrl}">
 		<spring:message code="fixUpTask.filter" />				
@@ -43,30 +43,34 @@
 		<display:column property="realizationTime" titleKey="fixUpTask.realizationTime"/> 
 		
 		<!-- See Warranties -->
-		
-		<display:column titleKey="fixUpTask.warranties">	
-				<jstl:set var="warrantiesSize" value="${row.warranties.size()}" />
+		<display:column titleKey="fixUpTask.warranties">								
 				
-				<spring:url var="warrantiesUrl" value="/warranty/handyWorker/list.do?fixUpTaskId={fixId}">
+				<spring:url var="warrantiesUrl" value="/warranty/customer/list.do?fixUpTaskId={fixId}">
 						<spring:param name="fixId" value="${row.id}" />
 				</spring:url>
 				
 				<a href="${warrantiesUrl}">
-						<spring:message var="seeWarranties" code="fixUpTask.seeWarranties"/> 
-						<jstl:out value="${seeWarranties}(${warrantiesSize})" />
+						<jstl:out value="${row.warranty.title}" />
 				</a>
+				
 		</display:column>
 		
-		<!-- See Categories -->
-		<display:column titleKey="fixUpTask.categories">	
-				<jstl:set var="categoriesSize" value="${row.categories.size()}" />
-				<spring:url var="categoriesUrl" value="http://www.acme.com/category/handyWorker/list.do?fixUpTaskId={fixId}">	<!-- R -->
-						<spring:param name="fixId" value="${row.id}" />
+		<!-- Category -->
+		<display:column titleKey="fixUpTask.categories">		
+				<jstl:out value="${row.category.name}"/>
+		</display:column>
+		
+		<!-- Customer -->.
+		<display:column titleKey="fixUpTask.customerUsername">	
+				
+				<jstl:set var="username" value="${row.customer.username}" />
+				
+				<spring:url var="customerUrl" value="/fixUpTask/handyWorker/list.do?customerId={customerId}">
+							<spring:param name="customerId" value="${row.customer.id}" />
 				</spring:url>
 				
-				<a href="${categoriesUrl}">
-						<spring:message var="seeCategories" code="fixUpTask.seeCategories"/> 
-						<jstl:out value="${seeCategories}(${categoriesSize})" />		<!-- R -->
+				<a href="${customerUrl}">
+							<jstl:out value="${username}" />
 				</a>
 		</display:column>
 		

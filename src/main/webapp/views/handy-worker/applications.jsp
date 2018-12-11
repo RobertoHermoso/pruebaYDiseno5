@@ -35,13 +35,21 @@
 		<display:column titleKey="application.workPlan">	
 			<!-- Solo deja crear un WorkPlan si está aceptada-->	
 			<jstl:if test="${row.status == 'ACCEPTED'}">
-					<spring:url var="statusUrl" value="http://www.acme.com/workPlan/handyWorker/edit.do?applicationId={appId}">
+					<spring:url var="statusUrl" value="/workPlan/handyWorker/edit.do?applicationId={appId}">
 							<spring:param name="appId" value="${row.id}"/>
 					</spring:url>
-			
+					<jstl:if test="${row.fixUpTask.phases.size()==0}" >
 					<a href="${statusUrl}">
-							<spring:message code="application.workPlan" />
+							<spring:message code="application.createWorkPlan" />
 					</a>
+					</jstl:if>
+					
+					<jstl:if test="${row.fixUpTask.phases.size()>0}" >
+					<a href="${statusUrl}">
+							<spring:message code="application.editWorkPlan" />	
+					</a>
+					</jstl:if>
+					
 			</jstl:if>	
 		</display:column>
 		
@@ -61,7 +69,7 @@
 		<div style=<jstl:out value="${color}"/>>
 		<display:column titleKey="application.comments">
 				<jstl:set var="commentsSize" value="${row.comments.size()}" />
-				<spring:url var="commentsUrl" value="http://www.acme.com/comment/handyWorker/list.do?applicationId={appId}">
+				<spring:url var="commentsUrl" value="/comment/handyWorker/list.do?applicationId={appId}">
 							<spring:param name="appId" value="${row.id}"/>
 				</spring:url>
 				<a href="${commentsUrl}">
