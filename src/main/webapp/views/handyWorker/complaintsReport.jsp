@@ -6,16 +6,27 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="customer.report.list" /></p>		
+<p><spring:message code="complaint.report" /></p>		
 
-<security:authorize access="hasRole('CUSTOMER')">		
- 	
-	<display:table pagesize="5" name="reports" id="row" class="displaytag"
-			requestURI="report/customer/list.do"> 
-			
-	<display:column property="moment" titleKey="report.moment"/>
+
+	<display:table pagesize="5" name="reports" id="row"
+	class="displaytag" requestURI="report/referee/list.do">
 	
-	<display:column property="description" titleKey="report.description"/>
+	<display:column titleKey="report.edit">
+	
+					<spring:url var="updateReport" value="report/referee/edit.do?reportId={compId}">
+							<spring:param name="compId" value="${row.id}" />
+					</spring:url>
+					
+					<a href="${updateReport}">
+							<spring:message code="report.updateReport" />				
+					</a>
+
+	</display:column>
+	
+	<display:column property="moment" titleKey="report.moment" /> 
+	
+	<display:column property="description" titleKey="report.description" /> 
 	
 	<display:column titleKey="report.attachments">
 				<jstl:set var="attachmentsSize" value="${row.attachments.size()}" />
@@ -27,6 +38,7 @@
 							<jstl:out value="$viewAttachments1}(${attachmentsSize})" />		
 				</a>
 		</display:column>
+		
 	
 	<display:column titleKey="report.notes">
 				<jstl:set var="notesSize" value="${row.notes.size()}" />
@@ -40,5 +52,5 @@
 	</display:column>
 	
 	</display:table>
+	
 
-</security:authorize>
