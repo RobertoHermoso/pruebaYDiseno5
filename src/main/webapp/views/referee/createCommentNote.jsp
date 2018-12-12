@@ -6,7 +6,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="note.comment.create" /></p>
+<p><spring:message code="note.addComment" /></p>
 
 <form:form action="report/note/comment/edit.do?" modelAttribute="comment">
 
@@ -22,8 +22,8 @@
 		
 		
 		
-	<input type="submit" name="cancel" value="<spring:message code="comment.cancel.button" />"
-		onClick="javascript: relativeRedir('report/note/comment/list.do?noteId{noteId}');" />
+	<input type="submit" name="cancel" value="<spring:message code="cancel.button" />"
+		onClick="javascript: relativeRedir('report/note/comment/list.do?noteId={noteId}');" />
 					<spring:param name="notId" value="${note.id}"/>
 	
 

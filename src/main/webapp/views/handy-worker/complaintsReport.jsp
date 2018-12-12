@@ -12,17 +12,6 @@
 	<display:table pagesize="5" name="reports" id="row"
 	class="displaytag" requestURI="report/referee/list.do">
 	
-	<display:column titleKey="report.edit">
-	
-					<spring:url var="updateReport" value="report/referee/edit.do?reportId={compId}">
-							<spring:param name="compId" value="${row.id}" />
-					</spring:url>
-					
-					<a href="${updateReport}">
-							<spring:message code="report.updateReport" />				
-					</a>
-
-	</display:column>
 	
 	<display:column property="moment" titleKey="report.moment" /> 
 	

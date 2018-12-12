@@ -19,7 +19,7 @@
 							<spring:param name="refId" value="${referee.id}"/>
 				</spring:url>
 				<a href="${assignUrl}">
-						Assign
+				<spring:message code="complaint.assign" />
 				</a>
 			
 	</display:column>
@@ -32,7 +32,7 @@
 	<display:column property="description" titleKey="complaint.description" /> 
 	
 	
-	<display:column titleKey="complaint.attachments">
+	<display:column titleKey="referee.attachments">
 				<jstl:set var="attachmentsSize" value="${row.attachments.size()}" />
 				<spring:url var="attachmetsUrl" value="/attachment/list.do?complaintnId={compId}">
 							<spring:param name="compId" value="${row.id}"/>

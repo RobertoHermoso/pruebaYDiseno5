@@ -6,7 +6,12 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="complaint.report.add" /></p>	
+<jstl:if test="${report.id == 0}">
+<p><spring:message code="complaint.newReport" /></p>
+</jstl:if>
+<jstl:if test="${report.id != 0}">
+<p><spring:message code="complaint.editReport" /></p>
+</jstl:if>
 
 <security:authorize access="hasRole('REFEREE')">
 
@@ -41,10 +46,14 @@
       </form:select>
       
       	
-		<input type="submit" name="create" value="<spring:message code="note.create.button"/>" />	
+		<input type="submit" name="create" value="<spring:message code="report.create.button"/>" />	
+		
+		<input type="submit" <jstl:if test="${report.id == 0}"><jstl:out value="disabled='disabled'"/></jstl:if>
+		 name="delete" value="<spring:message code="referee.delete" />" 
+		onClick="return confirm('<spring:message code="referee.verificationDelete" />')">
 			
 		
-		<input type="submit" name="cancel" value="<spring:message code="note.cancel.button"/>" />
+		<input type="submit" name="cancel" value="<spring:message code="cancel.button"/>" />
 		
 		
 

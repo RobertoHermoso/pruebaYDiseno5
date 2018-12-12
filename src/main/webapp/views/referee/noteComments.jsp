@@ -15,7 +15,7 @@
 	</jstl:forEach> 
 	
 			
-	<spring:url var="createCommentUrl" value="report/note/comment/edit.do?noteId={notId}">
+	<spring:url var="createCommentUrl" value="complaint/report/note/comment/edit.do?noteId={notId}">
 			<spring:param name="notId" value="${note.id}"/>
 	</spring:url>
 	
