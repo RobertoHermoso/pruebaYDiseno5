@@ -6,6 +6,12 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="java.util.HashMap"%>
+
+
 <p><spring:message code="administrator.statistics" /></p>
 
 <security:authorize access="hasRole('ADMIN')">
@@ -13,24 +19,27 @@
 
 <display:table name="statistics1" id="computedStatistics1" requestURI="${statistics/administrator/list.do}"
 	pagesize="5" class="displaytag">
+	
+
 	  <display:column property="titleStatistics" titleKey="administrator.statisticBasic" sortable="true">
       		<jstl:out value="${computedStatistics1.key}" />
       </display:column>
       
+      
       <display:column property="valueStatistics" titleKey="administrator.avegareBasic" sortable="true">
-      		<jstl:out value="${computedStatistics1.values.get(0)}" />
+      		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[0]}" />
       </display:column>
       
       <display:column property="valueStatistics" titleKey="administrator.minimumBasic" sortable="true">
-      		<jstl:out value="${computedStatistics1.values.get(1)}" />
+      		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[1]}" />
       </display:column>
       
       <display:column property="valueStatistics" titleKey="administrator.maximumBasic" sortable="true">
-      		<jstl:out value="${computedStatistics1.values.get(2)}" />
+      		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[2]}" />
       </display:column>
       
       <display:column property="valueStatistics" titleKey="administrator.desviationBasic" sortable="true">
-      		<jstl:out value="${computedStatistics1.values.get(3)}" />
+      		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[3]}" />
       </display:column>
 </display:table>
 
@@ -74,30 +83,6 @@
       
        <display:column property="valueHw" titleKey="administrator.scoreValuePercetHw" sortable="true">
       		<jstl:out value="${computedStatistics4.value}" />
-      </display:column>
-</display:table>
-
-
-<display:table name="statisticsBasic2" id="computedStatistics5" requestURI="${statistics/administrator/list.do}"
-	pagesize="5" class="displaytag">
-	  <display:column property="titleBasic2" titleKey="aministrator.statisticBasic2" sortable="true">
-      		<jstl:out value="${computedStatistics5.key}" />
-      </display:column>
-      
-       <display:column property="valueBasic" titleKey="administrator.scoreValueBasic2" sortable="true">
-      		<jstl:out value="${computedStatistics5.value}" />
-      </display:column>
-</display:table>
-
-
-<display:table name="statisticsComplaintFixUp" id="computedStatistics6" requestURI="${statistics/administrator/list.do}"
-	pagesize="5" class="displaytag">
-	  <display:column property="titleComplaint" titleKey="aministrator.statisticFixUp" sortable="true">
-      		<jstl:out value="${computedStatistics6.key}" />
-      </display:column>
-      
-       <display:column property="valueComplaint" titleKey="administrator.scoreValueFixUp" sortable="true">
-      		<jstl:out value="${computedStatistics6.value}" />
       </display:column>
 </display:table>
 

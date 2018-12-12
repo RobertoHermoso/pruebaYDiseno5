@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -20,102 +21,123 @@ import domain.Message;
 @Service
 public class BoxService {
 
-    @Autowired
-    private BoxRepository boxRepository;
+	@Autowired
+	private BoxRepository	boxRepository;
 
-    @Autowired
-    private MessageService messageService;
+	@Autowired
+	private MessageService	messageService;
 
-    @Autowired
-    private ActorService actorService;
+	@Autowired
+	private ActorService	actorService;
 
-    public Box create(String name, Box fatherBox) {
-	this.actorService.loggedAsActor();
-	UserAccount userAccount;
-	userAccount = LoginService.getPrincipal();
-	Actor actor = this.actorService.getActorByUsername(userAccount
-		.getUsername());
 
-	Box box = new Box();
-	List<Message> messages = new ArrayList<Message>();
-	box.setName(name);
-	box.setIsSystem(false);
-	box.setMessages(messages);
-	box.setFatherBox(fatherBox);
+	public Box create() {
 
-	List<Box> newBoxes = actor.getBoxes();
-	newBoxes.add(box);
-	actor.setBoxes(newBoxes);
-	return box;
-    }
+		this.actorService.loggedAsActor();
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Actor actor = this.actorService.getActorByUsername(userAccount.getUsername());
 
-    public Box save(Box box) {
-	Assert.isTrue(!box.getIsSystem());
-	this.actorService.loggedAsActor();
+		Box box = new Box();
+		List<Message> messages = new ArrayList<Message>();
+		box.setName("");
+		box.setIsSystem(false);
+		box.setMessages(messages);
+		box.setFatherBox(null);
 
-	UserAccount userAccount;
-	userAccount = LoginService.getPrincipal();
-	Actor actor = this.actorService.getActorByUsername(userAccount
-		.getUsername());
-	this.actorService.save(actor);
+		List<Box> newBoxes = actor.getBoxes();
+		newBoxes.add(box);
+		actor.setBoxes(newBoxes);
 
-	return this.boxRepository.save(box);
-    }
+		return box;
+	}
 
-    public Box updateBox(Box box) {
-	this.actorService.loggedAsActor();
-	Assert.isTrue(!box.getIsSystem());
-	return this.save(box);
-    }
+	public Box create(String name, Box fatherBox) {
 
-    public void deleteBox(Box box) {
-	this.actorService.loggedAsActor();
-	Assert.isTrue(!box.getIsSystem());
-	UserAccount userAccount;
-	userAccount = LoginService.getPrincipal();
-	Actor actor = this.actorService.getActorByUsername(userAccount
-		.getUsername());
+		this.actorService.loggedAsActor();
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Actor actor = this.actorService.getActorByUsername(userAccount.getUsername());
 
-	List<Box> sonBoxes = this.boxRepository.getSonsBox(box);
-	if (sonBoxes.size() == 0) {
-	    for (Message m : box.getMessages())
-		this.messageService.delete(m);
-	    box.getMessages().removeAll(box.getMessages());
+		Box box = new Box();
+		List<Message> messages = new ArrayList<Message>();
+		box.setName(name);
+		box.setIsSystem(false);
+		box.setMessages(messages);
+		box.setFatherBox(fatherBox);
 
-	    actor.getBoxes().remove(box);
-	    this.boxRepository.delete(box);
-	    this.actorService.save(actor);
+		List<Box> newBoxes = actor.getBoxes();
+		newBoxes.add(box);
+		actor.setBoxes(newBoxes);
 
-	} else
-	    for (Box sonBox : sonBoxes)
-		this.deleteBox(sonBox);
-	// this.actorService.save(actor);
+		return box;
+	}
 
-    }
+	public Box save(Box box) {
+		Assert.isTrue(!box.getIsSystem());
+		this.actorService.loggedAsActor();
 
-    public List<Box> findAll() {
-	return this.boxRepository.findAll();
-    }
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Actor actor = this.actorService.getActorByUsername(userAccount.getUsername());
+		this.actorService.save(actor);
 
-    public Box findOne(int id) {
-	return this.boxRepository.findOne(id);
-    }
+		return this.boxRepository.save(box);
+	}
 
-    public Box getRecievedBoxByActor(Actor a) {
-	return this.boxRepository.getRecievedBoxByActor(a);
-    }
+	public Box updateBox(Box box) {
+		this.actorService.loggedAsActor();
+		Assert.isTrue(!box.getIsSystem());
+		return this.save(box);
+	}
 
-    public Box getSpamBoxByActor(Actor a) {
-	return this.boxRepository.getSpamBoxByActor(a);
-    }
+	public void deleteBox(Box box) {
+		this.actorService.loggedAsActor();
+		Assert.isTrue(!box.getIsSystem());
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		Actor actor = this.actorService.getActorByUsername(userAccount.getUsername());
 
-    public Box getTrashBoxByActor(Actor a) {
-	return this.boxRepository.getTrashBoxByActor(a);
-    }
+		List<Box> sonBoxes = this.boxRepository.getSonsBox(box);
+		if (sonBoxes.size() == 0) {
+			for (Message m : box.getMessages())
+				this.messageService.delete(m);
+			box.getMessages().removeAll(box.getMessages());
 
-    public List<Box> getCurrentBoxByMessage(Message m) {
-	return this.boxRepository.getCurrentBoxByMessage(m);
+			actor.getBoxes().remove(box);
+			this.boxRepository.delete(box);
+			this.actorService.save(actor);
 
-    }
+		} else
+			for (Box sonBox : sonBoxes)
+				this.deleteBox(sonBox);
+		// this.actorService.save(actor);
+
+	}
+
+	public List<Box> findAll() {
+		return this.boxRepository.findAll();
+	}
+
+	public Box findOne(int id) {
+		return this.boxRepository.findOne(id);
+	}
+
+	public Box getRecievedBoxByActor(Actor a) {
+		return this.boxRepository.getRecievedBoxByActor(a);
+	}
+
+	public Box getSpamBoxByActor(Actor a) {
+		return this.boxRepository.getSpamBoxByActor(a);
+	}
+
+	public Box getTrashBoxByActor(Actor a) {
+		return this.boxRepository.getTrashBoxByActor(a);
+	}
+
+	public List<Box> getCurrentBoxByMessage(Message m) {
+		return this.boxRepository.getCurrentBoxByMessage(m);
+
+	}
 
 }

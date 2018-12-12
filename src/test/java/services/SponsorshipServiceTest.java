@@ -1,3 +1,4 @@
+
 package services;
 
 import java.text.ParseException;
@@ -20,61 +21,60 @@ import domain.Sponsorship;
 import domain.Tutorial;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/datasource.xml",
-	"classpath:spring/config/packages.xml" })
+@ContextConfiguration(locations = {
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+})
 @Transactional
 public class SponsorshipServiceTest extends AbstractTest {
 
-    @Autowired
-    private SponsorshipService sponsorshipService;
+	@Autowired
+	private SponsorshipService	sponsorshipService;
 
-    @Autowired
-    private TutorialService tutorialService;
+	@Autowired
+	private TutorialService		tutorialService;
 
-    @Test
-    public void testCreateSponsorship() throws ParseException {
 
-	Sponsorship sponsorship = new Sponsorship();
-	Sponsorship savedSponsorship = new Sponsorship();
+	@Test
+	public void testCreateSponsorship() throws ParseException {
 
-	super.authenticate("pepeSponsor");
+		Sponsorship sponsorship = new Sponsorship();
+		Sponsorship savedSponsorship = new Sponsorship();
 
-	Long number = 4599997102987605L;
-	CreditCard creditCard = new CreditCard();
-	creditCard.setBrandName("Visa");
-	creditCard.setCvvCode(405);
-	creditCard.setExpirationMonth(02);
-	creditCard.setExpirationYear(22);
-	creditCard.setHolderName("Alejandro Gomez Caballero");
-	creditCard.setNumber(number);
+		super.authenticate("pepeSponsor");
 
-	Tutorial tutorial = new Tutorial();
-	Tutorial savedTutorial = new Tutorial();
-	String dateInString = "2016-10-20";
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	Date date = formatter.parse(dateInString);
+		Long number = 4599997102987605L;
+		CreditCard creditCard = new CreditCard();
+		creditCard.setBrandName("Visa");
+		creditCard.setCvvCode(405);
+		creditCard.setExpirationMonth(02);
+		creditCard.setExpirationYear(22);
+		creditCard.setHolderName("Alejandro Gomez Caballero");
+		creditCard.setNumber(number);
 
-	tutorial = this.tutorialService.create("titulo", date, "sumario");
+		Tutorial tutorial = new Tutorial();
+		Tutorial savedTutorial = new Tutorial();
+		String dateInString = "2016-10-20";
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = formatter.parse(dateInString);
 
-	savedTutorial = this.tutorialService.save(tutorial);
+		tutorial = this.tutorialService.create("titulo", date, "sumario");
 
-	sponsorship = this.sponsorshipService.create(
-		"https://www.codepile.net/pile/Vd4vRNL2",
-		"https://github.com/DaviidGilB/pruebaYDiseno4", creditCard,
-		savedTutorial);
+		savedTutorial = this.tutorialService.save(tutorial);
 
-	savedSponsorship = this.sponsorshipService.save(sponsorship);
+		sponsorship = this.sponsorshipService.create("https://www.codepile.net/pile/Vd4vRNL2", "https://github.com/DaviidGilB/pruebaYDiseno4", creditCard);
 
-	System.out.println(savedSponsorship);
+		savedSponsorship = this.sponsorshipService.save(sponsorship);
 
-	List<Sponsorship> lista = new ArrayList<Sponsorship>();
+		System.out.println(savedSponsorship);
 
-	lista.add(this.sponsorshipService.findOne(savedSponsorship.getId()));
+		List<Sponsorship> lista = new ArrayList<Sponsorship>();
 
-	System.out.println(lista);
+		lista.add(this.sponsorshipService.findOne(savedSponsorship.getId()));
 
-	Assert.isTrue(!lista.isEmpty());
+		System.out.println(lista);
 
-	super.authenticate(null);
-    }
+		Assert.isTrue(!lista.isEmpty());
+
+		super.authenticate(null);
+	}
 }

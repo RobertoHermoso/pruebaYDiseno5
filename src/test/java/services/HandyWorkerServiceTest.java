@@ -199,9 +199,11 @@ public class HandyWorkerServiceTest extends AbstractTest {
 
 		Collection<Application> aResults = this.handyWorkerService.showApplications();
 		Collection<Application> a = h.getApplications();
-		Assert.isTrue(aResults.size() == a.size());
+
+		Assert.isTrue(aResults.equals(a));
 		super.unauthenticate();
 	}
+
 	@Test
 	public void testCreateApplicationHandyWorker() {
 		Actor actor = new Actor();

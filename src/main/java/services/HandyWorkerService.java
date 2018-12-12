@@ -63,8 +63,6 @@ public class HandyWorkerService {
 	@Autowired
 	private ReportService			reportService;
 	@Autowired
-	private ActorService			actorService;
-	@Autowired
 	private PhaseService			phaseService;
 	@Autowired
 	private ApplicationService		applicationService;
@@ -81,6 +79,91 @@ public class HandyWorkerService {
 
 
 	// Simple CRUD methods --------------------------------------------------------------------------------------------
+
+	public HandyWorker createHandyWorker() {
+
+		HandyWorker handyWorker = new HandyWorker();
+
+		List<SocialProfile> socialProfiles = new ArrayList<SocialProfile>();
+		List<Box> boxes = new ArrayList<Box>();
+		List<Endorsment> endorsments = new ArrayList<Endorsment>();
+		List<FixUpTask> f = new ArrayList<FixUpTask>();
+		List<Application> applications = new ArrayList<Application>();
+		List<Tutorial> tutorials = new ArrayList<Tutorial>();
+		Curriculum curriculum = new Curriculum();
+
+		UserAccount userAccountActor = new UserAccount();
+		userAccountActor.setUsername("");
+		userAccountActor.setPassword("");
+
+		Box spamBox = new Box();
+		List<Message> messages1 = new ArrayList<>();
+		spamBox.setIsSystem(true);
+		spamBox.setMessages(messages1);
+		spamBox.setName("Spam");
+
+		Box trashBox = new Box();
+		List<Message> messages2 = new ArrayList<>();
+		trashBox.setIsSystem(true);
+		trashBox.setMessages(messages2);
+		trashBox.setName("Trash");
+
+		Box sentBox = new Box();
+		List<Message> messages3 = new ArrayList<>();
+		sentBox.setIsSystem(true);
+		sentBox.setMessages(messages3);
+		sentBox.setName("Sent messages");
+
+		Box receivedBox = new Box();
+		List<Message> messages4 = new ArrayList<>();
+		receivedBox.setIsSystem(true);
+		receivedBox.setMessages(messages4);
+		receivedBox.setName("Received messages");
+
+		boxes.add(receivedBox);
+		boxes.add(sentBox);
+		boxes.add(spamBox);
+		boxes.add(trashBox);
+
+		Date thisMoment = new Date();
+		thisMoment.setTime(thisMoment.getTime());
+		Date afterMoment = new Date();
+		thisMoment.setTime(thisMoment.getTime() + 1);
+
+		Finder finder = this.finderService.createFinder("finder", "s", "s", 0.0, 0.0, thisMoment, afterMoment, f);
+
+		handyWorker.setFinder(finder);
+		handyWorker.setCurriculum(curriculum);
+		handyWorker.setTutorials(tutorials);
+		handyWorker.setName("");
+		handyWorker.setUserAccount(userAccountActor);
+		handyWorker.setAddress("");
+		handyWorker.setEmail("");
+		handyWorker.setMiddleName("");
+		handyWorker.setPhoneNumber("");
+		handyWorker.setSocialProfiles(socialProfiles);
+		handyWorker.setScore(0.);
+		handyWorker.setEndorsments(endorsments);
+		handyWorker.setMake(handyWorker.getName() + "" + handyWorker.getMiddleName() + "" + handyWorker.getSurname());
+		handyWorker.setApplications(applications);
+		handyWorker.setPhoto("");
+		handyWorker.setSurname("");
+
+		handyWorker.setHasSpam(false);
+
+		List<Authority> authorities = new ArrayList<Authority>();
+
+		Authority authority = new Authority();
+		authority.setAuthority(Authority.HANDYWORKER);
+		authorities.add(authority);
+
+		handyWorker.getUserAccount().setAuthorities(authorities);
+		//NOTLOCKED A TRUE EN LA INICIALIZACION, O SE CREARA UNA CUENTA BANEADA
+		handyWorker.getUserAccount().setIsNotLocked(true);
+
+		return handyWorker;
+
+	}
 
 	public HandyWorker createHandyWorker(String name, String middleName, String surname, String photo, String email, String phoneNumber, String address, String userName, String password, Double score, List<Tutorial> tutorials, Curriculum curriculum) {
 
@@ -141,6 +224,7 @@ public class HandyWorkerService {
 		handyWorker.setEmail(email);
 		handyWorker.setMiddleName(middleName);
 		handyWorker.setPhoneNumber(phoneNumber);
+		handyWorker.setSocialProfiles(socialProfiles);
 		handyWorker.setScore(score);
 		handyWorker.setEndorsments(endorsments);
 		handyWorker.setMake(name + "" + middleName + "" + surname);
@@ -183,7 +267,7 @@ public class HandyWorkerService {
 		return this.handyWorkerRepository.save(handyWorker);
 	}
 
-	public void delete(HandyWorker handyWorker){
+	public void delete(HandyWorker handyWorker) {
 		this.handyWorkerRepository.delete(handyWorker);
 	}
 
@@ -209,6 +293,26 @@ public class HandyWorkerService {
 		for (Report report : lr)
 			Assert.isTrue(report.getFinalMode());
 		return lr;
+	}
+
+	public Curriculum addCurriculum() {
+
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		List<Authority> authorities = (List<Authority>) userAccount.getAuthorities();
+		Assert.isTrue(authorities.get(0).toString().equals("HANDYWORKER"));
+
+		HandyWorker logguedHandyWorker = new HandyWorker();
+		logguedHandyWorker = this.handyWorkerRepository.getHandyWorkerByUsername(userAccount.getUsername());
+
+		Assert.isNull(logguedHandyWorker.getCurriculum());
+
+		Curriculum curriculum = this.curriculumService.create();
+		logguedHandyWorker.setCurriculum(curriculum);
+		this.handyWorkerRepository.save(logguedHandyWorker);
+		this.curriculumService.save(curriculum);
+		return curriculum;
+
 	}
 
 	public Curriculum addCurriculum(PersonalRecord personalRecord, List<ProfessionalRecord> professionalRecords, List<EducationRecord> educationRecords, List<MiscellaneousRecord> miscellaneousRecords, List<EndorserRecord> endorserRecords) {

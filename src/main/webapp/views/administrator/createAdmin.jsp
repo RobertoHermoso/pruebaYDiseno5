@@ -25,7 +25,7 @@
 	<form:hidden path ="version"/>
 	<form:hidden path ="hasSpam"/>
 	<form:hidden path ="boxes"/>
-	
+	<form:hidden path ="socialProfile"/>
 	
 	<form:label path="name">
 		<spring:message code="administrator.name" />
@@ -91,10 +91,7 @@
 	<br />
 	
 	<input type="radio" name="authority" value="ADMIN" checked> Admin<br>
-	
-	<input type="submit" name="socialProfiles" value="<spring:message code="administrator.socialProfile" />"
-		onClick="javascript: relativeRedir('administrator/createSocialProfile.do');" />
-	
+		
 	<input type="submit" name="save" value="<spring:message code="administrator.save" />" />
 	
 	<input type="submit" name="cancel" value="<spring:message code="administrator.cancel" />"

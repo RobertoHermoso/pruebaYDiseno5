@@ -12,18 +12,17 @@
 
 <display:table name="suspiciousActor" id="actorList" requestURI="${admin/administrator/list.do}"
 	pagesize="5" class="displaytag">
-	
+
  	  <display:column>
  	  	<jstl:choose>
  	  	<jstl:when test="${actorList.userAccount.isNotLocked == false}">
- 	  		<a href="suspicious/administrator/edit.do?actorId=${suspiciousActor.id}"
+ 	  		<input type="submit" name="Ban" value="<spring:message code="administrator.ban" />"
  	  			onclick="return confirm('<spring:message code="administrator.verificationBan" />')">
- 	  		</a>
  	  	</jstl:when>
+ 	  	
  	  	<jstl:when test="${actorList.userAccount.isNotLocked == true}">
- 	  		<a href="suspicious/administrator/edit.do?actorId=${suspiciousActor.id}"
+ 	  		<input type="submit" name="Ban" value="<spring:message code="administrator.unban" />"
  	  			onclick="return confirm('<spring:message code="administrator.verificationUnban" />')">
- 	  		</a>
  	  	</jstl:when>
  	  	</jstl:choose>
  	  </display:column>
@@ -35,7 +34,5 @@
 
 <input type="submit" name="cancel" value="<spring:message code="administrator.cancel" />"
 		onClick="javascript: relativeRedir('administrator/profile.do');" />
-
-
 
 </security:authorize>

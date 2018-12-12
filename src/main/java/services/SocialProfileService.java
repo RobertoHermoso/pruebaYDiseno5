@@ -23,6 +23,16 @@ public class SocialProfileService {
 		return this.socialProfileRepository.save(socialProfile);
 	}
 
+	public SocialProfile create() {
+		SocialProfile socialProfile = new SocialProfile();
+
+		socialProfile.setName("");
+		socialProfile.setNick("");
+		socialProfile.setProfileLink("");
+
+		return socialProfile;
+	}
+
 	public SocialProfile create(String nick, String name, String profileLink) {
 		SocialProfile socialProfile = new SocialProfile();
 

@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +32,28 @@ public class EndorsmentService {
 	// Supporting Services ------------------------------------------
 
 	// Simple CRUD methods ------------------------------------------
+
+	public Endorsment createEndorsment() {
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+
+		List<String> comments = new ArrayList<String>();
+
+		Endorser sender = (Endorser) this.actorService.getActorByUsername(userAccount.getUsername());
+
+		Endorsment endorsment = new Endorsment();
+
+		Date thisMoment = new Date();
+		thisMoment.setTime(thisMoment.getTime() - 1);
+
+		endorsment.setComments(comments);
+		endorsment.setMoment(thisMoment);
+		endorsment.setWrittenBy(sender);
+		endorsment.setWrittenTo(null);
+
+		return endorsment;
+
+	}
 
 	public Endorsment createEndorsment(List<String> comments, Endorser writtenTo) {
 		UserAccount userAccount;

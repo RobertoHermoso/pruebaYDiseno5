@@ -21,6 +21,19 @@ public class PersonalRecordService {
 	private PersonalRecordRepository	personalRecordRepository;
 
 
+	public PersonalRecord create() {
+
+		PersonalRecord personalRecord = new PersonalRecord();
+		personalRecord.setFullName("");
+		personalRecord.setPhoto("");
+		personalRecord.setEmail("");
+		personalRecord.setPhoneNumber("");
+		personalRecord.setUrlLinkedInProfile("");
+
+		return personalRecord;
+
+	}
+
 	// Simple CRUD methods
 
 	public PersonalRecord create(String fullName, String photo, String email, String phoneNumber, String urlLinkedInProfile) {

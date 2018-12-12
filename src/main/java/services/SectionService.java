@@ -23,6 +23,19 @@ public class SectionService {
 	private HandyWorkerService	handyWorkerService;
 
 
+	public Section create() {
+		Section section = new Section();
+		List<String> pictures = new ArrayList<String>();
+
+		section.setSectionTitle("");
+		section.setText("");
+		section.setSectionPictures(pictures);
+
+		section.setNumber(0);
+
+		return section;
+	}
+
 	public Section create(String title, String text, Integer number) {
 		Section section = new Section();
 		List<String> pictures = new ArrayList<String>();

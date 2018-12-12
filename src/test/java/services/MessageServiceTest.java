@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
-import domain.Actor;
 import domain.Admin;
 import domain.Box;
 import domain.Customer;
@@ -50,11 +49,8 @@ public class MessageServiceTest extends AbstractTest {
 
 		Admin admin = this.adminService.getAdminByUsername("davidAdmin");
 		HandyWorker handyWorker = this.handyWorkerService.getHandyWorkerByUsername("PepeHW");
-		List<Actor> recipients = new ArrayList<>();
-		recipients.add(admin);
-		recipients.add(handyWorker);
 
-		Message message = this.messageService.create("subject", "body", Priority.LOW, recipients);
+		Message message = this.messageService.create("subject", "body", Priority.LOW, admin);
 		Message saved = this.messageService.save(message);
 
 		List<Message> messages = new ArrayList<>();
@@ -76,11 +72,7 @@ public class MessageServiceTest extends AbstractTest {
 		HandyWorker handyWorker = new HandyWorker();
 		handyWorker = this.handyWorkerService.getHandyWorkerByUsername("PepeHW");
 
-		List<Actor> recipients = new ArrayList<>();
-		recipients.add(admin);
-		recipients.add(handyWorker);
-
-		Message message = this.messageService.create("subject", "body", Priority.HIGH, recipients);
+		Message message = this.messageService.create("subject", "body", Priority.HIGH, admin);
 		Message saved = this.messageService.save(message);
 		this.messageService.sendMessage(saved);
 
@@ -89,20 +81,20 @@ public class MessageServiceTest extends AbstractTest {
 
 		List<Message> result = new ArrayList<>();
 		for (Message m : receivedMessages)
-			if (m.getBody().equals(message.getBody()) && m.getSubject().equals(message.getSubject()) && m.getSender().equals(message.getSender()) && m.getReceivers().containsAll(message.getReceivers()))
+			if (m.getBody().equals(message.getBody()) && m.getSubject().equals(message.getSubject()) && m.getSender().equals(message.getSender()) && m.getReceiver().equals(message.getReceiver()))
 				result.add(m);
 		Assert.isTrue(result.size() != 0);
 
-		for (Actor a : recipients) {
-			Box received2 = this.boxService.getRecievedBoxByActor(a);
-			List<Message> receivedMessages2 = received.getMessages();
+		Box received2 = this.boxService.getRecievedBoxByActor(admin);
+		List<Message> receivedMessages2 = received.getMessages();
 
-			for (Message m : receivedMessages2)
-				if (m.getBody().equals(message.getBody()) && m.getSubject().equals(message.getSubject()) && m.getSender().equals(message.getSender()) && m.getReceivers().containsAll(message.getReceivers()))
-					result.add(m);
-		}
+		for (Message m : receivedMessages2)
+			if (m.getBody().equals(message.getBody()) && m.getSubject().equals(message.getSubject()) && m.getSender().equals(message.getSender()) && m.getReceiver().equals(message.getReceiver()))
+				result.add(m);
+
 		this.authenticate(null);
 	}
+
 	@Test
 	public void testUpdateMessage() {	//TODO
 		this.authenticate("davidAdmin");
@@ -110,11 +102,7 @@ public class MessageServiceTest extends AbstractTest {
 		Admin admin = this.adminService.getAdminByUsername("davidAdmin");
 		HandyWorker handyWorker = this.handyWorkerService.getHandyWorkerByUsername("PepeHW");
 
-		List<Actor> recipients = new ArrayList<>();
-		recipients.add(admin);
-		recipients.add(handyWorker);
-
-		Message message = this.messageService.create("subject", "body", Priority.LOW, recipients);
+		Message message = this.messageService.create("subject", "body", Priority.LOW, admin);
 		Message saved = this.messageService.save(message);
 
 		Box trashBox = this.boxService.getTrashBoxByActor(admin);
