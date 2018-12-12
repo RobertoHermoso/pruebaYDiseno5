@@ -13,12 +13,3 @@
 			<br /> 
 	</jstl:forEach> 	
 	
-	
-		<spring:url var="createAttachmentUrl" value="report/attachment/edit.do?reportId={repId}">
-					<spring:param name="repId" value="${repId}"/>
-		</spring:url>
-		
-	
-		<a href="${createAttachmentUrl}">
-				<spring:message code="attachment.create" />			
-		</a>

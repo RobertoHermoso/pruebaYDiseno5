@@ -16,7 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="sAuthenticated()">
+<security:authorize access="isAuthenticated()">
 
 <spring:url var="showActor" value="/actor/authenticated/edit.do"/>
 
@@ -24,14 +24,14 @@
 
 <spring:url var="boxSave" value="/box/authenticated/save.do"/>
 <form:form modelAttribute="box" action="${boxSave}">
-	<spring:message code="mail.box.name"/>:<form:input path="name" value="${box.name}"/>
+	<spring:message code="mail.box.name"/>:<form:input path="name" value="${box.name}" required/>
 	
 	<jstl:if test="${box.id!=0}">
 		<form:hidden path="id"/>
 		<form:hidden path="version"/>
 	</jstl:if>
 	
-	<input type="submit" name = "save" value="<spring:message code="mail.save"/>"/>
+	<input type="submit" name = "save" value="<spring:message code="mail.save"/>" onclick="return confirm('<spring:message code="mail.save" />')"/>
 </form:form>
 
 <spring:url var="mail" value="/box/authenticated/list.do"/>

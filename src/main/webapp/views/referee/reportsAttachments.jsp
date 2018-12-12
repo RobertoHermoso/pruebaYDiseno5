@@ -8,6 +8,7 @@
 
 <p><spring:message code="report.attachments" /></p>
 
+<security:authorize access="hasRole('REFEREE')">
 <jstl:forEach var="attachment" items="attachments">
 			<jstl:out value="${attachment}" />
 			<br /> 
@@ -22,3 +23,5 @@
 		<a href="${createAttachmentUrl}">
 				<spring:message code="attachment.create" />			
 		</a>
+		
+</security:authorize>

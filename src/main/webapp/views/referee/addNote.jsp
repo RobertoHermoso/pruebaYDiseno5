@@ -6,7 +6,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="report.note" /></p>	
+<p><spring:message code="report.addNote" /></p>	
 
 
 <form:form action="/report/note/edit.dodit.do" modelAttribute="complaint">
@@ -22,6 +22,11 @@
 		</form:label>
 		<form:textarea path="mandatoryComment"/>
 		<form:errors cssClass="error" path="mandatoryComment"/>
+		
+		<input type="submit" name="create" value="<spring:message code="note.create.button"/>" />	
+			
+		
+		<input type="submit" name="cancel" value="<spring:message code="cancel.button"/>" />
 
 
 </form:form>

@@ -66,4 +66,60 @@
 		<put-attribute name="body" value="/views/customer/editEndorsment.jsp" />
 	</definition>
 	
+	<!-- Complaints and Reports -->
+	
+		<definition name="/complaint/customer/list.do" extends="master.page">	
+		<put-attribute name="title" value="Complaints" />
+		<put-attribute name="body" value="/views/customer/complaints.jsp" />
+	</definition>
+	
+		<definition name="/complaint/customer/edit.do" extends="master.page">	
+		<put-attribute name="title" value="New Complaint" />
+		<put-attribute name="body" value="/views/customer/createComplaint.jsp" />
+	</definition>
+	
+	<definition name="/complaint/attachment/customer/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Create attachment" />
+		<put-attribute name="body" value="/views/customer/createAttachmentComplaint.jsp" />
+	</definition>
+	
+	
+		<definition name="/complaint/report/note/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Add Note" />
+		<put-attribute name="body" value="/views/customer/addNote.jsp" />
+	</definition>
+	
+		<definition name="/complaint/report/list.do" extends="master.page">	
+		<put-attribute name="title" value="Complaint's Report" />
+		<put-attribute name="body" value="/views/customer/complaintsReport.jsp" />
+	</definition>
+	
+		<definition name="/complaint/attachment/list.do" extends="master.page">	
+		<put-attribute name="title" value="Complaint's Attachments" />
+		<put-attribute name="body" value="/views/customer/complaintsAttachment.jsp" />
+	</definition>
+	
+	<definition name="/complaint/report/note/comment/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Add a Comment" />
+		<put-attribute name="body" value="/views/customer/createCommentNote.jsp" />
+	</definition>
+
+	<definition name="/complaint/report/note/comment/list.do" extends="master.page">	
+		<put-attribute name="title" value="Note's Comment" />
+		<put-attribute name="body" value="/views/customer/noteComments.jsp" />
+	</definition>
+	
+	
+	<definition name="complaint/report/note/list.do" extends="master.page">	
+		<put-attribute name="title" value="Report's Notes" />
+		<put-attribute name="body" value="/views/customer/reportNotes.jsp" />
+	</definition>
+	
+	
+	<definition name="/complaint/report/attachment/list.do" extends="master.page">	
+		<put-attribute name="title" value="Report's Attachments" />
+		<put-attribute name="body" value="/views/customer/reportsAttachments.jsp" />
+	</definition>
+	
+	
 </tiles-definitions>

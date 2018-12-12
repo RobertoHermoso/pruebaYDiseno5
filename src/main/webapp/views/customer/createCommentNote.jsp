@@ -21,7 +21,6 @@
 		
 		
 		
-		
 	<input type="submit" name="cancel" value="<spring:message code="comment.cancel.button" />"
 		onClick="javascript: relativeRedir('report/note/comment/list.do?noteId{noteId}');" />
 					<spring:param name="notId" value="${note.id}"/>

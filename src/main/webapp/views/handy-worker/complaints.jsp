@@ -6,33 +6,23 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="referee.complaints" /></p>	
+<p><spring:message code="customer.complaints" /></p>	
+
+
+	
 
 
 	<display:table pagesize="5" name="complaints" id="row"
-	class="displaytag" requestURI="complaint//list.do">
-	
-	
-	<display:column titleKey="complaint.assign">
+	class="displaytag" requestURI="/complaints/customer/list.do">
 		
-		<spring:url var="assignUrl" value="complaint/referee/edit.do?refereeId={refId}">
-							<spring:param name="refId" value="${referee.id}"/>
-				</spring:url>
-				<a href="${assignUrl}">
-				<spring:message code="complaint.assign" />
-				</a>
-			
-	</display:column>
-	
-	<display:column property="ticker" titleKey="complaint.ticker" /> 
+		<display:column property="ticker" titleKey="complaint.ticker" /> 
 		
-	<display:column property="moment" titleKey="complaint.moment"
+		<display:column property="moment" titleKey="complaint.moment"
 					sortable="true" format="{0,date,dd/MM/yyyy HH:mm}"  />	
-				
-	<display:column property="description" titleKey="complaint.description" /> 
-	
-	
-	<display:column titleKey="referee.attachments">
+					
+		<display:column property="description" titleKey="complaint.description" /> 
+			
+				<display:column titleKey="complaint.attachments">
 				<jstl:set var="attachmentsSize" value="${row.attachments.size()}" />
 				<spring:url var="attachmetsUrl" value="/attachment/list.do?complaintnId={compId}">
 							<spring:param name="compId" value="${row.id}"/>
@@ -42,4 +32,9 @@
 							<jstl:out value="$viewAttachments1}(${attachmentsSize})" />		
 				</a>
 		</display:column>
-	</display:table>
+		</display:table>
+		
+		
+	
+		 
+			
