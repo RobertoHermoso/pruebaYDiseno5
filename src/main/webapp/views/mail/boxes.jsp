@@ -54,7 +54,7 @@
 				<spring:param name="boxId" value="${row.id}"/>
 			</spring:url>
 		
-			<a href="${deleteBox}"><spring:message code="mail.box.delete"/></a>
+			<a href="${deleteBox}" onclick="return confirm('<spring:message code="mail.delete" />')"><spring:message code="mail.box.delete"/></a>
 		</display:column>
 	
 		<display:column titleKey="">

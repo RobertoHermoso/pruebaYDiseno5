@@ -32,7 +32,7 @@
 	
 	<spring:message code="mail.message"/>:<form:textarea path="body" required/>
 
-	<input type="submit" name = "save" value="<spring:message code="mail.message.send"/>"/>
+	<input type="submit" name = "save" value="<spring:message code="mail.message.send"/>" onclick="return confirm('<spring:message code="mail.send" />')"/>
 </form:form>
 
 <spring:url var="mail" value="/box/authenticated/list.do"/>

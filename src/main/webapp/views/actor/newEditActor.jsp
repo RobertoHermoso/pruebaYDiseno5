@@ -50,7 +50,7 @@
 			
 			<spring:message code="actor.address"/>:<form:input path="address" value="${actor.address}"/>
 			
-			<input type="submit" name = "save" value="<spring:message code="actor.save"/>"/>
+			<input type="submit" name = "save" value="<spring:message code="actor.save"/>" onclick="return confirm('<spring:message code="actor.save" />')"/>
 		</form:form>
 	
 	

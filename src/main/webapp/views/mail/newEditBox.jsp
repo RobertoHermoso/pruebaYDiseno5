@@ -31,7 +31,7 @@
 		<form:hidden path="version"/>
 	</jstl:if>
 	
-	<input type="submit" name = "save" value="<spring:message code="mail.save"/>"/>
+	<input type="submit" name = "save" value="<spring:message code="mail.save"/>" onclick="return confirm('<spring:message code="mail.save" />')"/>
 </form:form>
 
 <spring:url var="mail" value="/box/authenticated/list.do"/>
