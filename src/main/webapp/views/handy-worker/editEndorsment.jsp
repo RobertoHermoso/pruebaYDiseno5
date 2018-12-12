@@ -33,7 +33,7 @@
 	<form:errors cssClass="error" path="handyWorkers"/>
 	
 	
-	
+	<input type="submit" <jstl:if test="${endorsment.id != 0}"><jstl:out value="disabled='disabled'"/></jstl:if>
 	<input type="submit" name="save" value="<spring:message code="handyWorker.save" />" />
 
 	<input type="submit" <jstl:if test="${endorsment.id == 0}"><jstl:out value="disabled='disabled'"/></jstl:if>

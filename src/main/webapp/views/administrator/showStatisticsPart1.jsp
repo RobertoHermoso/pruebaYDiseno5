@@ -26,19 +26,19 @@
       </display:column>
       
       
-      <display:column property="valueStatistics" titleKey="administrator.avegareBasic" sortable="true">
+      <display:column property="valueStatistics" titleKey="statistics.average" sortable="true">
       		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[0]}" />
       </display:column>
       
-      <display:column property="valueStatistics" titleKey="administrator.minimumBasic" sortable="true">
+      <display:column property="valueStatistics" titleKey="statistics.minimum" sortable="true">
       		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[1]}" />
       </display:column>
       
-      <display:column property="valueStatistics" titleKey="administrator.maximumBasic" sortable="true">
+      <display:column property="valueStatistics" titleKey="statistics.maximum" sortable="true">
       		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[2]}" />
       </display:column>
       
-      <display:column property="valueStatistics" titleKey="administrator.desviationBasic" sortable="true">
+      <display:column property="valueStatistics" titleKey="statistics.standardDeviation" sortable="true">
       		<jstl:out value="${computedStatistics1.get(computedStatistics1.key)[3]}" />
       </display:column>
 </display:table>

@@ -1,5 +1,4 @@
 <%--
- * action-1.jsp
  *
  * Copyright (C) 2018 Universidad de Sevilla
  * 
@@ -16,34 +15,27 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="administrator.computedScore" /></p>
+<p><spring:message code="customer.endorsmentComments" /></p>
 
-<security:authorize access="hasRole('ADMIN')">
+<security:authorize access="hasRole('CUSTOMER')">
 
-<display:table name="scores" id="computedScores" requestURI="${computedScore/administrator/list.do}"
+<jstl:set var="loggedActor" value="${loggedActor}" /> 
+
+<display:table name="endorsmentComment" id="endorsmentsList" requestURI="${endorsment/customer/commentlist.do}"
 	pagesize="5" class="displaytag">
-	  <display:column property="endorser" titleKey="administrator.scoreEndorser" sortable="true">
-      		<jstl:out value="${computedScores.key}" />
+	  
+ 	   <display:column property="comment" title="<spring:message code="endorsment.comment" />" sortable="true">
+      		<jstl:forEach var="i" begin="1" end="${endorsment.comments.sice()}">
+      		<jstl:out value="${endorsment.comments.get(i)}" />
+      		</jstl:forEach>
       </display:column>
-      
-       <display:column property="score" titleKey="administrator.scoreValue" sortable="true">
-      		<jstl:out value="${computedScores.value}" />
-      </display:column>
-</display:table>
+ </display:table>	   
 
+	
 <div>
-	<a href="index.do">
-		<spring:message code="andministrator.backToMainMenu" />
+	<a href="endorsment/customer/list.do">
+		<spring:message code="endorsment.comeBack" />
 	</a>
 </div>
-
-<div>
-	<a href="computedScore/administrator/list.do">
-		<spring:message code="endorsment.recalculate" />
-	</a>
-</div>
-
 
 </security:authorize>
-
-
