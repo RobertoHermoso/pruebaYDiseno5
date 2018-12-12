@@ -71,4 +71,44 @@
 		<put-attribute name="body" value="/views/handy-worker/fixUpTaskCustomerInfo.jsp" />
 	</definition>
 	
+	<!-- Complaints and Reports -->
+	
+		<definition name="/complaint/report/note/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Añadir una nota" />
+		<put-attribute name="body" value="/views/handy-worker/addNote.jsp" />
+	</definition>
+	
+		<definition name="/complaint/report/list.do" extends="master.page">	
+		<put-attribute name="title" value="Informes de las queja" />
+		<put-attribute name="body" value="/views/handy-worker/complaintsReport.jsp" />
+	</definition>
+	
+		<definition name="/complaint/attachment/list.do" extends="master.page">	
+		<put-attribute name="title" value="Archivos de la queja" />
+		<put-attribute name="body" value="/views/handy-worker/complaintsAttachment.jsp" />
+	</definition>
+	
+	<definition name="/complaint/report/note/comment/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Añadir un comentario" />
+		<put-attribute name="body" value="/views/handy-worker/createCommentNote.jsp" />
+	</definition>
+
+	<definition name="/complaint/report/note/comment/list.do" extends="master.page">	
+		<put-attribute name="title" value="Comentarios de la nota" />
+		<put-attribute name="body" value="/views/handy-worker/noteComments.jsp" />
+	</definition>
+	
+	
+	<definition name="complaint/report/note/list.do" extends="master.page">	
+		<put-attribute name="title" value="Notas del informe" />
+		<put-attribute name="body" value="/views/handy-worker/reportNotes.jsp" />
+	</definition>
+	
+	
+	<definition name="/complaint/report/attachment/list.do" extends="master.page">	
+		<put-attribute name="title" value="Archivos del informe" />
+		<put-attribute name="body" value="/views/handy-worker/reportsAttachments.jsp" />
+	</definition>
+	
+	
 </tiles-definitions>
