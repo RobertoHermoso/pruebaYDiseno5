@@ -10,7 +10,7 @@
 
 
 	<display:table pagesize="5" name="reports" id="row"
-	class="displaytag" requestURI="report/referee/list.do">
+	class="displaytag" requestURI="report/list.do">
 	
 	
 	<display:column property="moment" titleKey="report.moment" /> 
