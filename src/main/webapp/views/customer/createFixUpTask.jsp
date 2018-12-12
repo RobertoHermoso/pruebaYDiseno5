@@ -79,10 +79,6 @@
 		
 		<input type="submit" name="create" value="<spring:message code="fixUpTask.create.button"/>" />	
 		
-		
-		
-		
-		
 		<input type="submit" name="cancel" value="<spring:message code="fixUpTask.cancel.button"/>" />
 
 </form:form>

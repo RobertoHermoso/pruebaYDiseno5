@@ -6,13 +6,14 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="comment.complaints" /></p>	
+<p><spring:message code="customer.complaints" /></p>	
+
+
+	
 
 
 	<display:table pagesize="5" name="complaints" id="row"
-	class="displaytag" requestURI="/complaint/customer/list.do">
-	
-	
+	class="displaytag" requestURI="/complaints/customer/list.do">
 		
 		<display:column property="ticker" titleKey="complaint.ticker" /> 
 		
@@ -27,15 +28,17 @@
 							<spring:param name="compId" value="${row.id}"/>
 				</spring:url>
 				<a href="${attachmentsUrl}">
-							<spring:message var ="viewAttachments1" code="attachment.viewComments" />
+							<spring:message var ="viewAttachments1" code="complaint.viewAttachments" />
 							<jstl:out value="$viewAttachments1}(${attachmentsSize})" />		
 				</a>
 		</display:column>
 		</display:table>
 		
+		
 				<spring:url var="createComplaintUrl" value="/complaint/customer/edit.do?fixUpTaskId={fixId}">
-				<spring:param name="fixId" value="${fixUpTaskId}"/>
-		</spring:url>
+					<spring:param name="fixId" value="${fixUpTaskId}"/>
+				</spring:url>
+		
 	
 		<a href="${createComplaintUrl}">
 				<spring:message code="complaint.create" />			

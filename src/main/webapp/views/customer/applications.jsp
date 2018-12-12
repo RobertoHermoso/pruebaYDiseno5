@@ -36,7 +36,7 @@
 		<display:column titleKey="application.changeStatus">
 			<!-- Solo deja cambiar el status si no está aceptado -->	
 			<jstl:if test="${row.status!='ACCEPTED'}">
-					<spring:url var="statusUrl" value="http://www.acme.com/application/customer/edit.do?applicationId={appId}">
+					<spring:url var="statusUrl" value="/application/customer/edit.do?applicationId={appId}">
 							<spring:param name="appId" value="${row.id}"/>
 					</spring:url>
 			

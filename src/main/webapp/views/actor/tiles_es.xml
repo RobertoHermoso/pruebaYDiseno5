@@ -16,29 +16,9 @@
       
 <tiles-definitions>
 
-	<definition name="actor/messages" extends="master.page">	
-		<put-attribute name="title" value="Mensajes" />
-		<put-attribute name="body" value="/views/actor/messages.jsp" />
-	</definition>
-	
-	<definition name="actor/message" extends="master.page">	
-		<put-attribute name="title" value="Mensaje" />
-		<put-attribute name="body" value="/views/actor/message.jsp" />
-	</definition>
-	
-	<definition name="actor/newMssage" extends="master.page">	
-		<put-attribute name="title" value="Nuevo mensaje" />
-		<put-attribute name="body" value="/views/actor/newMessage.jsp" />
-	</definition>
-	
-	<definition name="actor/boxes" extends="master.page">	
-		<put-attribute name="title" value="Bandejas" />
-		<put-attribute name="body" value="/views/actor/boxes.jsp" />
-	</definition>
-	
-	<definition name="actor/newEditBox" extends="master.page">	
-		<put-attribute name="title" value="Bandeja" />
-		<put-attribute name="body" value="/views/actor/newEditBox.jsp" />
+	<definition name="/actor/newEditActor" extends="master.page">	
+		<put-attribute name="title" value="Actor" />
+		<put-attribute name="body" value="/views/actor/newEditActor.jsp" />
 	</definition>
 	
 </tiles-definitions>
