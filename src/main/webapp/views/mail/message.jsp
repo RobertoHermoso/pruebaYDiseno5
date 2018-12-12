@@ -16,7 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="sAuthenticated()">
+<security:authorize access="isAuthenticated()">
 
 <spring:url var="showActor" value="/actor/authenticated/edit.do"/>
 
@@ -32,6 +32,7 @@
 
 <spring:url var="moveMessage" value="/message/authenticated/move.do"/>
 
+<!-- No sé si habría que hacerlo con un formulario de Spring -->
 <form name="move" id="move" action="${moveMessage}" method="get">
 	<input type="text" id="messageId" name="messageId" value="${message.id}" hidden=""/>
 	<select name="boxId" id="boxId">

@@ -16,7 +16,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<security:authorize access="sAuthenticated()">
+<security:authorize access="isAuthenticated()">
 
 <spring:url var="showActor" value="/actor/authenticated/edit.do"/>
 
