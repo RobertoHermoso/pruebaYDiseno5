@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.List;
@@ -16,39 +17,50 @@ import domain.Tutorial;
 @Transactional
 public class SponsorshipService {
 
-    @Autowired
-    private SponsorshipRepository sponsorshipRepository;
+	@Autowired
+	private SponsorshipRepository	sponsorshipRepository;
 
-    public Sponsorship create(String banner, String link,
-	    CreditCard creditCard, Tutorial tutorial) {
-	Sponsorship sporsorship = new Sponsorship();
 
-	sporsorship.setCreditCard(creditCard);
-	sporsorship.setBannerUrl(banner);
-	sporsorship.setLink(link);
-	sporsorship.setTutorials(tutorial);
+	public Sponsorship create() {
+		Sponsorship sporsorship = new Sponsorship();
+		CreditCard creditCard = new CreditCard();
+		Tutorial tutorial = new Tutorial();
 
-	return sporsorship;
-    }
+		sporsorship.setCreditCard(creditCard);
+		sporsorship.setBannerUrl("");
+		sporsorship.setLink("");
 
-    public Sponsorship save(Sponsorship s) {
-	// this.sponsorService.loggedAsSponsor();
-	return this.sponsorshipRepository.save(s);
-    }
+		return sporsorship;
+	}
 
-    public List<Sponsorship> findAll() {
-	// this.sponsorService.loggedAsSponsor();
-	return this.sponsorshipRepository.findAll();
-    }
+	public Sponsorship create(String banner, String link, CreditCard creditCard) {
+		Sponsorship sporsorship = new Sponsorship();
 
-    public Sponsorship findOne(Integer id) {
-	// this.sponsorService.loggedAsSponsor();
-	return this.sponsorshipRepository.findOne(id);
-    }
+		sporsorship.setCreditCard(creditCard);
+		sporsorship.setBannerUrl(banner);
+		sporsorship.setLink(link);
 
-    public void delete(Sponsorship s) {
-	// this.sponsorService.loggedAsSponsor();
-	this.sponsorshipRepository.delete(s);
-    }
+		return sporsorship;
+	}
+
+	public Sponsorship save(Sponsorship s) {
+		// this.sponsorService.loggedAsSponsor();
+		return this.sponsorshipRepository.save(s);
+	}
+
+	public List<Sponsorship> findAll() {
+		// this.sponsorService.loggedAsSponsor();
+		return this.sponsorshipRepository.findAll();
+	}
+
+	public Sponsorship findOne(Integer id) {
+		// this.sponsorService.loggedAsSponsor();
+		return this.sponsorshipRepository.findOne(id);
+	}
+
+	public void delete(Sponsorship s) {
+		// this.sponsorService.loggedAsSponsor();
+		this.sponsorshipRepository.delete(s);
+	}
 
 }

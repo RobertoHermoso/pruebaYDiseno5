@@ -3,6 +3,7 @@ package services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -30,30 +31,35 @@ public class CurriculumService {
 	// Manged Repository
 
 	@Autowired
-	private CurriculumRepository		curriculumRepository;
+	private CurriculumRepository	curriculumRepository;
 
 	// Supporting service
 
 	@Autowired
-	private EndorserRecordService		endorserRecordService;
-
-	@Autowired
-	private MiscellaneousRecordService	miscellandeousRecordService;
-
-	@Autowired
-	private EducationRecordService		educationalRecordService;
-
-	@Autowired
-	private ProfessionalRecordService	profesionalRecordService;
-
-	@Autowired
-	private PersonalRecordService		personalRecordService;
-
-	@Autowired
-	private HandyWorkerService			handyWorkerService;
+	private HandyWorkerService		handyWorkerService;
 
 
 	// Simple CRUD methods
+
+	public Curriculum create() {
+
+		List<EndorserRecord> endorserRecords = new ArrayList<EndorserRecord>();
+		List<MiscellaneousRecord> miscellaneousRecords = new ArrayList<MiscellaneousRecord>();
+		List<EducationRecord> educationRecords = new ArrayList<EducationRecord>();
+		List<ProfessionalRecord> professionalRecords = new ArrayList<ProfessionalRecord>();
+		PersonalRecord personalRecord = new PersonalRecord();
+
+		Curriculum curriculum = new Curriculum();
+		curriculum.setTicker(this.generateTicker());
+		curriculum.setEndorserRecords(endorserRecords);
+		curriculum.setMiscellaneousRecords(miscellaneousRecords);
+		curriculum.setEducationRecords(educationRecords);
+		curriculum.setPersonalRecord(personalRecord);
+		curriculum.setProfessionalRecords(professionalRecords);
+
+		return curriculum;
+
+	}
 
 	public Curriculum create(List<EndorserRecord> endorserRecords, List<MiscellaneousRecord> miscellaneousRecords, List<EducationRecord> educationRecords, List<ProfessionalRecord> professionalRecords, PersonalRecord personalRecord) {
 

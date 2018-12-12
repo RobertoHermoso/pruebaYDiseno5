@@ -56,14 +56,86 @@ public class CustomerService {
 	@Autowired
 	private EndorsmentService		endorsmentService;
 	@Autowired
-	private EndorserService			endorserService;
-	@Autowired
 	private ConfigurationService	configurationService;
 	@Autowired
 	private FinderService			finderService;
 	@Autowired
 	private HandyWorkerService		handyWorkerService;
 
+
+	public Customer create() {
+
+		// SE DECLARA EL SPONSOR
+		Customer s = new Customer();
+
+		// SE CREAN LAS LISTAS VACIAS
+		List<SocialProfile> socialProfiles = new ArrayList<SocialProfile>();
+		List<Box> boxes = new ArrayList<Box>();
+		List<FixUpTask> fixUpTasks = new ArrayList<FixUpTask>();
+
+		// SE AÑADE EL USERNAME Y EL PASSWORD
+		UserAccount userAccountActor = new UserAccount();
+		userAccountActor.setUsername("");
+		userAccountActor.setPassword("");
+
+		// SE CREAN LAS CAJAS POR DEFECTO
+		Box spamBox = new Box();
+		List<Message> messages1 = new ArrayList<>();
+		spamBox.setIsSystem(true);
+		spamBox.setMessages(messages1);
+		spamBox.setName("Spam");
+
+		Box trashBox = new Box();
+		List<Message> messages2 = new ArrayList<>();
+		trashBox.setIsSystem(true);
+		trashBox.setMessages(messages2);
+		trashBox.setName("Trash");
+
+		Box sentBox = new Box();
+		List<Message> messages3 = new ArrayList<>();
+		sentBox.setIsSystem(true);
+		sentBox.setMessages(messages3);
+		sentBox.setName("Sent messages");
+
+		Box receivedBox = new Box();
+		List<Message> messages4 = new ArrayList<>();
+		receivedBox.setIsSystem(true);
+		receivedBox.setMessages(messages4);
+		receivedBox.setName("Received messages");
+
+		boxes.add(receivedBox);
+		boxes.add(sentBox);
+		boxes.add(spamBox);
+		boxes.add(trashBox);
+
+		// SE AÑADEN TODOS LOS ATRIBUTOS
+		s.setName("");
+		s.setMiddleName("");
+		s.setSurname("");
+		s.setPhoto("");
+		s.setEmail("");
+		s.setPhoneNumber("");
+		s.setAddress("");
+		s.setSocialProfiles(socialProfiles);
+		s.setBoxes(boxes);
+		s.setUserAccount(userAccountActor);
+		s.setFixUpTasks(fixUpTasks);
+		s.setScore(0.);
+		// SPAM SIEMPRE A FALSE EN LA INICIALIZACION
+		s.setHasSpam(false);
+
+		List<Authority> authorities = new ArrayList<Authority>();
+
+		Authority authority = new Authority();
+		authority.setAuthority(Authority.SPONSOR);
+		authorities.add(authority);
+
+		s.getUserAccount().setAuthorities(authorities);
+		// NOTLOCKED A TRUE EN LA INICIALIZACION, O SE CREARA UNA CUENTA BANEADA
+		s.getUserAccount().setIsNotLocked(true);
+
+		return s;
+	}
 
 	// Simple CRUD methods
 	public Customer create(String name, String middleName, String surname, String photo, String email, String phoneNumber, String address, String userName, String password) {
@@ -225,10 +297,31 @@ public class CustomerService {
 		return fixUpTask;
 	}
 
-	public FixUpTask createFixUpTask(String description, String address, Double maxPrice, Date realizationTime, Warranty warranty, Collection<Phase> phases, Category category, Collection<Complaint> complaints, Collection<Application> applications) {
+	public FixUpTask createFixUpTask() {
 		Customer loggedCustomer = this.securityAndCustomer();
 
-		FixUpTask fixUpTask = this.fixUpTaskService.create(description, address, maxPrice, realizationTime, warranty, phases, category, complaints, applications);
+		FixUpTask fixUpTask = this.fixUpTaskService.create();
+
+		FixUpTask fixUpTaskSaved = this.fixUpTaskService.save(fixUpTask);
+
+		List<FixUpTask> listf = new ArrayList<>();
+		listf.addAll(loggedCustomer.getFixUpTasks());
+		listf.add(fixUpTask);
+		loggedCustomer.setFixUpTasks(listf);
+
+		this.save(loggedCustomer);
+
+		this.configurationService.isActorSuspicious(loggedCustomer);
+
+		return fixUpTaskSaved;
+
+	}
+
+	public FixUpTask createFixUpTask(String description, String address, Double maxPrice, Date realizationTime, Collection<Warranty> warranties, Collection<Phase> phases, Collection<Category> categories, Collection<Complaint> complaints,
+		Collection<Application> applications) {
+		Customer loggedCustomer = this.securityAndCustomer();
+
+		FixUpTask fixUpTask = this.fixUpTaskService.create(description, address, maxPrice, realizationTime, warranties, phases, categories, complaints, applications);
 
 		FixUpTask fixUpTaskSaved = this.fixUpTaskService.save(fixUpTask);
 
@@ -344,6 +437,35 @@ public class CustomerService {
 		return complaintFound;
 	}
 
+	public Complaint createComplaint(FixUpTask fixUpTask) {
+		Customer loggedCustomer = this.securityAndCustomer();
+
+		Complaint complaint = this.complaintService.create();
+
+		Complaint complaintSaved = this.complaintService.save(complaint);
+
+		Collection<FixUpTask> fixUpTasks = this.customerRepository.findFixUpTasksById(loggedCustomer.getId());
+
+		FixUpTask fixUpTaskFound = null;
+		for (FixUpTask f : fixUpTasks)
+			if (fixUpTask.getId() == f.getId()) {
+				fixUpTaskFound = f;
+				break;
+			}
+
+		Assert.isTrue(!fixUpTaskFound.equals(null));
+
+		List<Complaint> complaints = (List<Complaint>) fixUpTaskFound.getComplaints();
+		complaints.add(complaint);
+		fixUpTaskFound.setComplaints(complaints);
+
+		this.fixUpTaskService.save(fixUpTaskFound);
+
+		this.configurationService.isActorSuspicious(loggedCustomer);
+
+		return complaintSaved;
+	}
+
 	public Complaint createComplaint(FixUpTask fixUpTask, String description, List<String> attachments) {
 		Customer loggedCustomer = this.securityAndCustomer();
 
@@ -408,6 +530,35 @@ public class CustomerService {
 	}
 
 	// NOTES
+	public Note createNote(Report report) {
+		Customer loggedCustomer = this.securityAndCustomer();
+
+		Note note = this.noteService.create();
+
+		Collection<Report> reports = this.customerRepository.findReportsById(loggedCustomer.getId());
+
+		Report reportFound = null;
+		for (Report r : reports)
+			if (report.getId() == r.getId()) {
+				reportFound = r;
+				break;
+			}
+
+		Assert.notNull(reportFound);
+
+		List<Note> notes = report.getNotes();
+		notes.add(note);
+
+		report.setNotes(notes);
+
+		Note noteSaved = this.noteService.save(note);
+		this.reportService.save(report);
+
+		this.configurationService.isActorSuspicious(loggedCustomer);
+
+		return noteSaved;
+	}
+
 	public Note createNote(Report report, String mandatoryComment, List<String> optionalComments) {
 		Customer loggedCustomer = this.securityAndCustomer();
 

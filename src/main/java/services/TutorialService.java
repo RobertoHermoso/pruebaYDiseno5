@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import repositories.TutorialRepository;
 import domain.Section;
+import domain.Sponsorship;
 import domain.Tutorial;
 
 @Service
@@ -21,15 +22,36 @@ public class TutorialService {
 	@Autowired
 	private TutorialRepository	tutorialRepository;
 
+	@Autowired
+	private SponsorshipService	sponsorshipService;
+
+
+	public Tutorial create() {
+		Tutorial tutorial = new Tutorial();
+		List<Section> sections = new ArrayList<Section>();
+		List<Sponsorship> sponsorships = new ArrayList<Sponsorship>();
+
+		tutorial.setLastUpdate(null);
+		tutorial.setTitle("");
+		tutorial.setSumary("");
+		tutorial.setSections(sections);
+		tutorial.setSponsorships(sponsorships);
+
+		return tutorial;
+	}
 
 	public Tutorial create(String title, Date lastUpdate, String sumary) {
 		Tutorial tutorial = new Tutorial();
 		List<Section> sections = new ArrayList<Section>();
+		List<Sponsorship> sponsorships = new ArrayList<Sponsorship>();
+
+		sponsorships.addAll(this.sponsorshipService.findAll());
 
 		tutorial.setLastUpdate(lastUpdate);
 		tutorial.setTitle(title);
 		tutorial.setSumary(sumary);
 		tutorial.setSections(sections);
+		tutorial.setSponsorships(sponsorships);
 
 		return tutorial;
 	}

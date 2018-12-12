@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,23 @@ public class ReportService {
 	@Autowired
 	private ReportRepository	reportRepository;
 
+
+	public Report create() {
+
+		List<String> attachments = new ArrayList<String>();
+		List<Note> notes = new ArrayList<Note>();
+
+		Report report = new Report();
+		Date thisMoment = new Date();
+		thisMoment.setTime(thisMoment.getTime() - 1);
+		report.setMoment(thisMoment);
+		report.setDescription("");
+		report.setAttachments(attachments);
+		report.setFinalMode(false);
+		report.setNotes(notes);
+
+		return report;
+	}
 
 	public Report create(String description, List<String> attachments, List<Note> notes) {
 

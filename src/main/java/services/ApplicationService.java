@@ -35,6 +35,25 @@ public class ApplicationService {
 
 	//Simple CRUD methods ---------------------------------------------------------------------
 
+	public Application createApplication() {
+		Application application = new Application();
+
+		Date thisMoment = new Date();
+		thisMoment.setTime(thisMoment.getTime() - 1);
+		FixUpTask fixUpTask = new FixUpTask();
+		HandyWorker handyWorker = new HandyWorker();
+
+		application.setMoment(thisMoment);
+		application.setStatus(Status.PENDING);
+		application.setOfferedPrice(0);
+		List<String> comments = new ArrayList<>();
+		application.setComments(comments);
+		application.setFixUpTask(fixUpTask);
+		application.setHandyWorker(handyWorker);
+
+		return application;
+	}
+
 	public Application createApplication(double offeredPrice, FixUpTask fixUpTask, HandyWorker handyWorker) {
 		Application application = new Application();
 
@@ -54,7 +73,7 @@ public class ApplicationService {
 
 	//Aux
 
-	private static boolean validateCreditCardNumber(String str) {
+	public boolean validateCreditCardNumber(String str) {
 
 		int[] ints = new int[str.length()];
 		for (int i = 0; i < str.length(); i++)

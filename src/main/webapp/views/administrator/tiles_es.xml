@@ -16,37 +16,37 @@
       
 <tiles-definitions>
 
-	<definition name="administrator/action-1" extends="master.page">	
+	<definition name="administrator/banUnban" extends="master.page">	
 		<put-attribute name="title" value="Administrador: Bloquear/desbloquear" />
 		<put-attribute name="body" value="/views/administrator/banUnban.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-2" extends="master.page">	
+	<definition name="administrator/computedScore" extends="master.page">	
 		<put-attribute name="title" value="Administrador: Puntuación" />
 		<put-attribute name="body" value="/views/administrator/computedScore.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-3" extends="master.page">	
+	<definition name="administrator/createAdmin" extends="master.page">	
 		<put-attribute name="title" value="Administrador: Crear admin" />
 		<put-attribute name="body" value="/views/administrator/createAdmin.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-4" extends="master.page">	
+	<definition name="administrator/createReferee" extends="master.page">	
 		<put-attribute name="title" value="Administrador: Crear referee" />
 		<put-attribute name="body" value="/views/administrator/createReferee.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-5" extends="master.page">	
+	<definition name="administrator/goodAndBadWordsCreate" extends="master.page">	
 		<put-attribute name="title" value="Administrador: Crear buenas o malas palabras" />
 		<put-attribute name="body" value="/views/administrator/goodAndBadWordsCreate.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-6" extends="master.page">	
+	<definition name="administrator/goodAndBadWordsList" extends="master.page">	
 		<put-attribute name="title" value="Administrador: Mostrar buenas o malas palabras" />
 		<put-attribute name="body" value="/views/administrator/goodAndBadWordsList.jsp" />
 	</definition>
 	
-	<definition name="administrator/action-7" extends="master.page">	
+	<definition name="administrator/showStatisticsPart1" extends="master.page">	
 		<put-attribute name="title" value="Administrador: Mostrar estadisticas" />
 		<put-attribute name="body" value="/views/administrator/showStatisticsPart1.jsp" />
 	</definition>

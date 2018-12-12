@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,22 @@ public class EducationRecordService {
 
 
 	// Simple CRUD methods
+
+	public EducationRecord create() {
+
+		List<String> comments = new ArrayList<String>();
+
+		EducationRecord educationRecord = new EducationRecord();
+		educationRecord.setTitle("");
+		educationRecord.setStartDateStudy(null);
+		educationRecord.setEndDateStudy(null);
+		educationRecord.setInstitution("");
+		educationRecord.setUrl("");
+		educationRecord.setComments(comments);
+
+		return educationRecord;
+
+	}
 
 	public EducationRecord create(String title, Date startDateStudy, Date endDateStudy, String institution, String link, List<String> comments) {
 
