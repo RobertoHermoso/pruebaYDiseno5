@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,19 @@ public class NoteService {
 	@Autowired
 	private NoteRepository	noteRepository;
 
+
+	public Note create() {
+
+		List<String> optionalComments = new ArrayList<String>();
+		Note note = new Note();
+		Date thisMoment = new Date();
+		thisMoment.setTime(thisMoment.getTime() - 1);
+		note.setMoment(thisMoment);
+		note.setMandatoryComment("");
+		note.setOptionalComments(optionalComments);
+
+		return note;
+	}
 
 	public Note create(String mandatoryComment, List<String> optionalComments) {
 

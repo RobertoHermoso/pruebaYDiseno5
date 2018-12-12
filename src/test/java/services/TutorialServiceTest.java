@@ -1,3 +1,4 @@
+
 package services;
 
 import java.text.ParseException;
@@ -16,27 +17,29 @@ import utilities.AbstractTest;
 import domain.Tutorial;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/datasource.xml",
-	"classpath:spring/config/packages.xml" })
+@ContextConfiguration(locations = {
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+})
 @Transactional
 public class TutorialServiceTest extends AbstractTest {
 
-    @Autowired
-    private TutorialService tutorialService;
+	@Autowired
+	private TutorialService	tutorialService;
 
-    @Test
-    public void testCreateTutorial() throws ParseException {
 
-	Tutorial tutorial = new Tutorial();
-	Tutorial saved = new Tutorial();
-	String dateInString = "2016-10-20";
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	Date date = formatter.parse(dateInString);
+	@Test
+	public void testCreateTutorial() throws ParseException {
 
-	tutorial = this.tutorialService.create("titulo", date, "sumario");
+		Tutorial tutorial = new Tutorial();
+		Tutorial saved = new Tutorial();
+		String dateInString = "2016-10-20";
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = formatter.parse(dateInString);
 
-	saved = this.tutorialService.save(tutorial);
+		tutorial = this.tutorialService.create("titulo", date, "sumario");
 
-	Assert.isTrue(this.tutorialService.findAll().contains(saved));
-    }
+		saved = this.tutorialService.save(tutorial);
+
+		Assert.isTrue(this.tutorialService.findAll().contains(saved));
+	}
 }

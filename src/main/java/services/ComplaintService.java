@@ -3,6 +3,7 @@ package services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,19 @@ public class ComplaintService {
 	@Autowired
 	private ComplaintRepository	complaintRepository;
 
+
+	public Complaint create() {
+
+		Complaint complaint = new Complaint();
+		Date thisMoment = new Date();
+		List<String> attachments = new ArrayList<String>();
+		thisMoment.setTime(thisMoment.getTime() - 1);
+		complaint.setTicker(this.generateTicker());
+		complaint.setMoment(thisMoment);
+		complaint.setAttachments(attachments);
+
+		return complaint;
+	}
 
 	//Consultar lo del ticker
 	public Complaint create(String description, List<String> attachments) {

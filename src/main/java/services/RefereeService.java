@@ -60,6 +60,79 @@ public class RefereeService {
 
 	// CRUD Methods -------------------------------------------------
 
+	public Referee create() {
+
+		// SE DECLARA EL SPONSOR
+		Referee s = new Referee();
+
+		// SE CREAN LAS LISTAS VACIAS
+		List<SocialProfile> socialProfiles = new ArrayList<SocialProfile>();
+		List<Box> boxes = new ArrayList<Box>();
+		List<Report> reports = new ArrayList<Report>();
+
+		// SE AÑADE EL USERNAME Y EL PASSWORD
+		UserAccount userAccountActor = new UserAccount();
+		userAccountActor.setUsername("");
+		userAccountActor.setPassword("");
+
+		// SE CREAN LAS CAJAS POR DEFECTO
+		Box spamBox = new Box();
+		List<Message> messages1 = new ArrayList<>();
+		spamBox.setIsSystem(true);
+		spamBox.setMessages(messages1);
+		spamBox.setName("Spam");
+
+		Box trashBox = new Box();
+		List<Message> messages2 = new ArrayList<>();
+		trashBox.setIsSystem(true);
+		trashBox.setMessages(messages2);
+		trashBox.setName("Trash");
+
+		Box sentBox = new Box();
+		List<Message> messages3 = new ArrayList<>();
+		sentBox.setIsSystem(true);
+		sentBox.setMessages(messages3);
+		sentBox.setName("Sent messages");
+
+		Box receivedBox = new Box();
+		List<Message> messages4 = new ArrayList<>();
+		receivedBox.setIsSystem(true);
+		receivedBox.setMessages(messages4);
+		receivedBox.setName("Received messages");
+
+		boxes.add(receivedBox);
+		boxes.add(sentBox);
+		boxes.add(spamBox);
+		boxes.add(trashBox);
+
+		// SE AÑADEN TODOS LOS ATRIBUTOS
+		s.setName("");
+		s.setMiddleName("");
+		s.setSurname("");
+		s.setPhoto("");
+		s.setEmail("");
+		s.setPhoneNumber("");
+		s.setAddress("");
+		s.setSocialProfiles(socialProfiles);
+		s.setBoxes(boxes);
+		s.setUserAccount(userAccountActor);
+		s.setReports(reports);
+		// SPAM SIEMPRE A FALSE EN LA INICIALIZACION
+		s.setHasSpam(false);
+
+		List<Authority> authorities = new ArrayList<Authority>();
+
+		Authority authority = new Authority();
+		authority.setAuthority(Authority.SPONSOR);
+		authorities.add(authority);
+
+		s.getUserAccount().setAuthorities(authorities);
+		//NOTLOCKED A TRUE EN LA INICIALIZACION, O SE CREARA UNA CUENTA BANEADA
+		s.getUserAccount().setIsNotLocked(true);
+
+		return s;
+	}
+
 	public Referee create(String name, String middleName, String surname, String photo, String email, String phoneNumber, String address, String userName, String password) {
 
 		// SE DECLARA EL SPONSOR

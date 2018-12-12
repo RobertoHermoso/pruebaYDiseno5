@@ -8,7 +8,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -27,7 +26,7 @@ public class Message extends DomainEntity {
 	private List<String>	tags;
 
 	private Actor			sender;
-	private List<Actor>		receivers;
+	private Actor			receiver;
 
 
 	public Message() {		//For Json purposes
@@ -91,13 +90,13 @@ public class Message extends DomainEntity {
 	}
 
 	@NotNull
-	@ManyToMany
-	public List<Actor> getReceivers() {
-		return this.receivers;
+	@ManyToOne
+	public Actor getReceiver() {
+		return this.receiver;
 	}
 
-	public void setReceivers(final List<Actor> receivers) {
-		this.receivers = receivers;
+	public void setReceiver(final Actor receiver) {
+		this.receiver = receiver;
 	}
 
 }

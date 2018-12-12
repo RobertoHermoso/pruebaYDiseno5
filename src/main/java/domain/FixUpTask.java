@@ -9,7 +9,7 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,9 +33,9 @@ public class FixUpTask extends DomainEntity {
 	private Date					realizationTime;
 
 	private Collection<Application>	applications;
-	private Category				category;
+	private Collection<Category>	categories;
 	private Collection<Phase>		phases;
-	private Warranty				warranty;
+	private Collection<Warranty>	warranties;
 	private Collection<Complaint>	complaints;		//opt
 
 
@@ -109,13 +109,13 @@ public class FixUpTask extends DomainEntity {
 	}
 
 	@NotNull
-	@ManyToOne(optional = false)
-	public Category getCategory() {
-		return this.category;
+	@ManyToMany
+	public Collection<Category> getCategories() {
+		return this.categories;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategories(final Collection<Category> categories) {
+		this.categories = categories;
 	}
 
 	@Valid
@@ -124,18 +124,18 @@ public class FixUpTask extends DomainEntity {
 		return this.phases;
 	}
 
-	public void setPhases(Collection<Phase> phases) {
+	public void setPhases(final Collection<Phase> phases) {
 		this.phases = phases;
 	}
 
 	@NotNull
-	@ManyToOne(optional = false)
-	public Warranty getWarranty() {
-		return this.warranty;
+	@OneToMany
+	public Collection<Warranty> getWarranties() {
+		return this.warranties;
 	}
 
-	public void setWarranty(Warranty warranty) {
-		this.warranty = warranty;
+	public void setWarranties(final Collection<Warranty> warranties) {
+		this.warranties = warranties;
 	}
 
 	@Valid

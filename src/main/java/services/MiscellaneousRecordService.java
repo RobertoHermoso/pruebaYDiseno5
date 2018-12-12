@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,6 +24,18 @@ public class MiscellaneousRecordService {
 
 
 	// Simple CRUD methods
+
+	public MiscellaneousRecord create() {
+
+		List<String> comments = new ArrayList<String>();
+		MiscellaneousRecord miscellaneousRecord = new MiscellaneousRecord();
+		miscellaneousRecord.setTitle("");
+		miscellaneousRecord.setLinkAttachment("");
+		miscellaneousRecord.setComments(comments);
+
+		return miscellaneousRecord;
+
+	}
 
 	public MiscellaneousRecord create(String title, String linkAttachment, List<String> comments) {
 

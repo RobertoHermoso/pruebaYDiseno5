@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,6 +24,20 @@ public class EndorserRecordService {
 
 
 	// Simple CRUD methods
+
+	public EndorserRecord create() {
+
+		List<String> comments = new ArrayList<String>();
+
+		EndorserRecord endorserRecord = new EndorserRecord();
+		endorserRecord.setFullName("");
+		endorserRecord.setEmail("");
+		endorserRecord.setPhoneNumber("");
+		endorserRecord.setLinkLinkedInProfile("");
+		endorserRecord.setComments(comments);
+
+		return endorserRecord;
+	}
 
 	public EndorserRecord create(String fullName, String email, String phoneNumber, String linkLinkedInProfile, List<String> comments) {
 

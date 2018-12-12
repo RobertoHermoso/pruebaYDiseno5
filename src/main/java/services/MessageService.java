@@ -29,21 +29,6 @@ public class MessageService {
 	private ActorService			actorService;
 
 	@Autowired
-	private AdminService			adminService;
-
-	@Autowired
-	private HandyWorkerService		handyWorkerService;
-
-	@Autowired
-	private CustomerService			customerService;
-
-	@Autowired
-	private RefereeService			refereeService;
-
-	@Autowired
-	private SponsorService			sponsorService;
-
-	@Autowired
 	private BoxService				boxService;
 
 	@Autowired
@@ -66,39 +51,63 @@ public class MessageService {
 
 		Actor sender = this.actorService.getActorByUsername(userAccount.getUsername());
 
-		List<Actor> actors = message.getReceivers();
+		Actor actor = message.getReceiver();
 
-		for (Actor a : actors) {
-			Box boxRecieved = new Box();
-			Box boxSpam = new Box();
+		Box boxRecieved = new Box();
+		Box boxSpam = new Box();
 
-			Message messageCopy = this.create(message.getSubject(), message.getBody(), message.getPriority(), message.getReceivers());
-			Message messageCopySaved = this.save(messageCopy);
+		Message messageCopy = this.create(message.getSubject(), message.getBody(), message.getPriority(), message.getReceiver());
+		Message messageCopySaved = this.save(messageCopy);
 
-			boxRecieved = this.boxService.getRecievedBoxByActor(a);
-			boxSpam = this.boxService.getSpamBoxByActor(a);
+		boxRecieved = this.boxService.getRecievedBoxByActor(actor);
+		boxSpam = this.boxService.getSpamBoxByActor(actor);
 
-			// Guardar la box con ese mensaje;
+		// Guardar la box con ese mensaje;
 
-			if (this.configurationService.isActorSuspicious(sender)) {
-				List<Message> list = boxSpam.getMessages();
-				list.add(messageCopySaved);
-				boxSpam.setMessages(list);
+		if (this.configurationService.isActorSuspicious(sender)) {
+			List<Message> list = boxSpam.getMessages();
+			list.add(messageCopySaved);
+			boxSpam.setMessages(list);
 
-			} else {
-				List<Message> list = boxRecieved.getMessages();
-				list.add(messageCopySaved);
-				boxRecieved.setMessages(list);
-			}
+		} else {
+			List<Message> list = boxRecieved.getMessages();
+			list.add(messageCopySaved);
+			boxRecieved.setMessages(list);
 		}
-
 	}
+
 	public Message save(Message message) {
 		return this.messageRepository.save(message);
 
 	}
 
-	public Message create(String Subject, String body, Priority priority, List<Actor> recipients) {
+	public Message create() {
+
+		this.actorService.loggedAsActor();
+
+		UserAccount userAccount;
+		userAccount = LoginService.getPrincipal();
+		String userName = userAccount.getUsername();
+
+		Date thisMoment = new Date();
+		thisMoment.setTime(thisMoment.getTime() - 1);
+		List<String> tags = new ArrayList<String>();
+
+		Message message = new Message();
+		Actor sender = this.actorService.getActorByUsername(userAccount.getUsername());
+		Actor receiver = new Actor();
+		message.setMoment(thisMoment);
+		message.setSubject("");
+		message.setBody("");
+		message.setPriority(null);
+		message.setReceiver(receiver);
+		message.setTags(tags);
+		message.setSender(sender);
+
+		return message;
+	}
+
+	public Message create(String Subject, String body, Priority priority, Actor recipient) {
 
 		this.actorService.loggedAsActor();
 
@@ -114,24 +123,11 @@ public class MessageService {
 
 		Actor sender = this.actorService.getActorByUsername(userAccount.getUsername());
 
-		/*
-		 * if (userAccount.getAuthorities().contains(Authority.ADMIN))
-		 * message.setSender(this.adminService.getAdminByUsername(userName));
-		 * else if (userAccount.getAuthorities().contains(Authority.HANDYWORKER))
-		 * message.setSender(this.handyWorkerService.getHandyWorkerByUsername(userName));
-		 * else if (userAccount.getAuthorities().contains(Authority.CUSTOMER))
-		 * message.setSender(this.customerService.getCustomerByUsername(userName));
-		 * else if (userAccount.getAuthorities().contains(Authority.REFEREE))
-		 * message.setSender(this.refereeService.getRefereeByUsername(userName));
-		 * else if (userAccount.getAuthorities().contains(Authority.SPONSOR))
-		 * message.setSender(this.sponsorService.getSponsorByUsername(userName));
-		 */
-
 		message.setMoment(thisMoment);
 		message.setSubject(Subject);
 		message.setBody(body);
 		message.setPriority(priority);
-		message.setReceivers(recipients);
+		message.setReceiver(recipient);
 		message.setTags(tags);
 		message.setSender(sender);
 

@@ -20,6 +20,15 @@ public class PhaseService {
 	private PhaseRepository	phaseRepository;
 
 
+	public Phase create() {
+		Phase phase = new Phase();
+		phase.setTitle("");
+		phase.setDescription("");
+		phase.setStartMoment(null);
+		phase.setEndMoment(null);
+		return phase;
+	}
+
 	public Phase create(String title, String description, Date startMoment, Date endMoment) {
 		Phase phase = new Phase();
 		phase.setTitle(title);

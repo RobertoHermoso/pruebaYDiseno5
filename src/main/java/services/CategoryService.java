@@ -20,6 +20,16 @@ public class CategoryService {
 	private CategoryRepository	categoryRepository;
 
 
+	public Category create() {
+
+		Category category = new Category();
+		List<Category> subCategories = new ArrayList<Category>();
+		category.setName("");
+		category.setSubCategories(subCategories);
+
+		return category;
+	}
+
 	public Category create(String name, Category fatherCategory) {
 
 		Category category = new Category();

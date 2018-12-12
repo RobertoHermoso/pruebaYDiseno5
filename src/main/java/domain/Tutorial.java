@@ -9,6 +9,7 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,15 +22,25 @@ import org.hibernate.validator.constraints.NotBlank;
 @Access(AccessType.PROPERTY)
 public class Tutorial extends DomainEntity {
 
-	private String			title;
-	private Date			lastUpdate;
-	private String			sumary;
-	private List<String>	pictures;
+	private String				title;
+	private Date				lastUpdate;
+	private String				sumary;
+	private List<String>		pictures;
 
-	private List<Section>	sections;
+	private List<Section>		sections;
+	private List<Sponsorship>	sponsorships;
 
 
 	//Use of @OneToMany or @ManyToMany targeting an unmapped class: domain.Tutorial.section
+
+	@ManyToMany
+	public List<Sponsorship> getSponsorships() {
+		return this.sponsorships;
+	}
+
+	public void setSponsorships(List<Sponsorship> sponsorships) {
+		this.sponsorships = sponsorships;
+	}
 
 	@NotBlank
 	public String getTitle() {

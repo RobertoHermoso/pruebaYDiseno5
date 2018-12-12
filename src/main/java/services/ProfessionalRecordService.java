@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,21 @@ public class ProfessionalRecordService {
 
 
 	// Simple CRUD methods
+
+	public ProfessionalRecord create() {
+
+		List<String> comments = new ArrayList<String>();
+		ProfessionalRecord professionalRecord = new ProfessionalRecord();
+		professionalRecord.setNameCompany("");
+		professionalRecord.setStartDate(null);
+		professionalRecord.setEndDate(null);
+		professionalRecord.setRole("");
+		professionalRecord.setLinkAttachment("");
+		professionalRecord.setComments(comments);
+
+		return professionalRecord;
+
+	}
 
 	public ProfessionalRecord create(String nameCompany, Date startDate, Date endDate, String role, String linkAttachment, List<String> comments) {
 
