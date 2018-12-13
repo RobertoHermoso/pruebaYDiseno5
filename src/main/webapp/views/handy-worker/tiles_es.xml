@@ -71,12 +71,12 @@
 		<put-attribute name="body" value="/views/handy-worker/fixUpTaskCustomerInfo.jsp" />
 	</definition>
 
-	<definition name="/tutorial/handy-worker/add.do" extends="master.page">	
+	<definition name="/tutorial/handyWorker/add.do" extends="master.page">	
 		<put-attribute name="title" value="Crear tutorial" />
 		<put-attribute name="body" value="/views/customer/editEndorsment.jsp" />
 	</definition>
 	
-	<definition name="/tutorial/handy-worker/edit.do" extends="master.page">	
+	<definition name="/tutorial/handyWorker/edit.do" extends="master.page">	
 		<put-attribute name="title" value="Editar tutorial" />
 		<put-attribute name="body" value="/views/customer/editEndorsment.jsp" />
 	</definition>
@@ -115,9 +115,54 @@
 	</definition>
 	
 	
-	<definition name="/complaint/report/attachment/list.do" extends="master.page">	
-		<put-attribute name="title" value="Archivos del informe" />
-		<put-attribute name="body" value="/views/handy-worker/reportsAttachments.jsp" />
+	<definition name="/curriculum/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Curriculum" />
+		<put-attribute name="body" value="/views/handy-worker/curriculum.jsp" />
+	</definition>
+	
+	<definition name="/endorserRecord/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Historial de Patrocinador" />
+		<put-attribute name="body" value="/views/handy-worker/endorserRecords.jsp" />
+	</definition>
+	
+	<definition name="/miscellaneousRecord/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Historiales Misceláneos" />
+		<put-attribute name="body" value="/views/handy-worker/miscellaneousRecords.jsp" />
+	</definition>
+	
+	<definition name="/educationRecord/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Historial Académico" />
+		<put-attribute name="body" value="/views/handy-worker/educationRecords.jsp" />
+	</definition>
+	
+	<definition name="/professionalRecord/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Historiales Profesionales" />
+		<put-attribute name="body" value="/views/handy-worker/professionalRecords.jsp" />
+	</definition>
+	
+	<definition name="/professionalRecord/handyWorker/list.do" extends="master.page">	
+		<put-attribute name="title" value="Comentarios de Historial" />
+		<put-attribute name="body" value="/views/handy-worker/commentsRecord.jsp" />
+	</definition>
+	
+	<definition name="/personalRecord/handyWorker/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Editar Historial Personal" />
+		<put-attribute name="body" value="/views/handy-worker/editPersonalRecord.jsp" />
+	</definition>
+	
+	<definition name="/endorserRecord/handyWorker/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Editar Historial de Patrocinador" />
+		<put-attribute name="body" value="/views/handy-worker/editEndorserRecord.jsp" />
+	</definition>
+	
+	<definition name="/miscellaneousRecord/handyWorker/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Editar Historial Misceláneo" />
+		<put-attribute name="body" value="/views/handy-worker/editMiscellaneousRecord.jsp" />
+	</definition>
+	
+	<definition name="/professionalRecord/handyWorker/edit.do" extends="master.page">	
+		<put-attribute name="title" value="Historial Profesional" />
+		<put-attribute name="body" value="/views/handy-worker/editProfessionalRecord.jsp" />
 	</definition>
 
 </tiles-definitions>
