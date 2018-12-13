@@ -34,7 +34,7 @@
 	
 	
 	<input type="submit" <jstl:if test="${endorsment.id != 0}"><jstl:out value="disabled='disabled'"/></jstl:if>
-	<input type="submit" name="save" value="<spring:message code="handyWorker.save" />" />
+		name="save" value="<spring:message code="handyWorker.save" />" />
 
 	<input type="submit" <jstl:if test="${endorsment.id == 0}"><jstl:out value="disabled='disabled'"/></jstl:if>
 		 name="delete" value="<spring:message code="handyWorker.delete" />" 
@@ -42,7 +42,7 @@
 	
 	<input type="submit" name="cancel" value="<spring:message code="handyWorker.cancel" />"
 		onClick="javascript: relativeRedir('handyWorker/endorsementList.do');" />
-</form:form>
+</form:form>	
 
 </security:authorize>
 

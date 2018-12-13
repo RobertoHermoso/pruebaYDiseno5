@@ -34,7 +34,7 @@
 	<form:errors cssClass="error" path="customers"/>
 	
 	<input type="submit" <jstl:if test="${endorsment.id != 0}"><jstl:out value="disabled='disabled'"/></jstl:if>
-	<input type="submit" name="save" value="<spring:message code="customer.save" />" />
+		name="save" value="<spring:message code="customer.save" />" />
 
 	<input type="submit" <jstl:if test="${endorsment.id == 0}"><jstl:out value="disabled='disabled'"/></jstl:if>
 		 name="delete" value="<spring:message code="customer.delete" />" 
@@ -45,3 +45,4 @@
 </form:form>
 
 </security:authorize>
+	
