@@ -24,8 +24,15 @@
 			<li><a class="fNiv"><spring:message	code="master.page.administrator" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="administrator/action-1.do"><spring:message code="master.page.administrator.action.1" /></a></li>
-					<li><a href="administrator/action-2.do"><spring:message code="master.page.administrator.action.2" /></a></li>					
+					<li><a href="administrator/banunban.do"><spring:message code="master.page.administrator.banUnban" /></a></li>
+					<li><a href="administrator/broadcast.do"><spring:message code="master.page.administrator.broadcast" /></a></li>	
+					<li><a href="administrator/computedscore.do"><spring:message code="master.page.administrator.computedscore" /></a></li>					
+					<li><a href="administrator/createadmin.do"><spring:message code="master.page.administrator.createadmin" /></a></li>					
+					<li><a href="administrator/createreferee.do"><spring:message code="master.page.administrator.createreferee" /></a></li>			
+					<li><a href="administrator/goodandbadwordslist.do"><spring:message code="master.page.administrator.goodAndBadWordsList" /></a></li>	
+					<li><a href="administrator/showstaitsticspart1.do"><spring:message code="master.page.administrator.showstaitsticspart1" /></a></li>	
+					<li><a href="administrator/listcategory.do"><spring:message code="master.page.administrator.listcategory" /></a></li>	
+					<li><a href="administrator/listwarranty.do"><spring:message code="master.page.administrator.listwarranty" /></a></li>														
 				</ul>
 			</li>
 		</security:authorize>
@@ -34,21 +41,37 @@
 			<li><a class="fNiv"><spring:message	code="master.page.customer" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="services/general-services.do"><spring:message code="master.page.customer.action.1" /></a></li>
-					<li><a href="services/repairs.do"><spring:message code="master.page.customer.action.2" /></a></li>
-					<li><a href="services/installations.do"><spring:message code="master.page.customer.action.3" /></a></li>
-					<li><a href="services/outdoor-services.do"><spring:message code="master.page.customer.action.4" /></a></li>					
-					<li><a href="services/indoor-services.do"><spring:message code="master.page.customer.action.5" /></a></li>
-					
-													
+					<li><a href="customer/fixuptask.do"><spring:message code="master.page.customer.fixUpTask" /></a></li>
+					<li><a href="customer/listendorsment.do"><spring:message code="master.page.customer.listendorsment" /></a></li>									
 				</ul>
 			</li>
 					
 			
 		</security:authorize>
 		
+		<security:authorize access="hasRole('HANDYWORKER')">
+			<li><a class="fNiv"><spring:message	code="master.page.handyworker" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="handyworker/applications.do"><spring:message code="master.page.handyworker.applications" /></a></li>
+					<li><a href="handyworker/listendorsment.do"><spring:message code="master.page.handyworker.listendorsment" /></a></li>									
+				</ul>
+			</li>
+		</security:authorize>
+		
+			<security:authorize access="hasRole('REFEREE')">
+			<li><a class="fNiv"><spring:message	code="master.page.referee" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="referee/complaints.do"><spring:message code="master.page.referee.complaints" /></a></li>
+					<li><a href="referee/complaintsreport.do"><spring:message code="master.page.referee.complaintsreport" /></a></li>									
+				</ul>
+			</li>
+		</security:authorize>
+		
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message code="master.page.login" /></a></li>
+			<li><a class="fNiv" href="actor/neweditactor.do"><spring:message code="master.page.actor.neweditactor /></a></li>
 		</security:authorize>
 		
 		<security:authorize access="isAuthenticated()">
@@ -59,9 +82,7 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/action-1.do"><spring:message code="master.page.profile.action.1" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message code="master.page.profile.action.3" /></a></li>					
+					<li><a href="profile/boxes.do"><spring:message code="master.page.profile.boxes" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message code="master.page.logout" /> </a></li>
 				</ul>
 			</li>
