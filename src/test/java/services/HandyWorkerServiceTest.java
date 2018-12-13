@@ -200,7 +200,7 @@ public class HandyWorkerServiceTest extends AbstractTest {
 		Collection<Application> aResults = this.handyWorkerService.showApplications();
 		Collection<Application> a = h.getApplications();
 
-		Assert.isTrue(aResults.equals(a));
+		Assert.isTrue(aResults.containsAll(a) && aResults.size() == a.size());
 		super.unauthenticate();
 	}
 
