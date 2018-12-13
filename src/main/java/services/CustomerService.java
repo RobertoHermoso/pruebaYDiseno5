@@ -317,11 +317,10 @@ public class CustomerService {
 
 	}
 
-	public FixUpTask createFixUpTask(String description, String address, Double maxPrice, Date realizationTime, Collection<Warranty> warranties, Collection<Phase> phases, Collection<Category> categories, Collection<Complaint> complaints,
-		Collection<Application> applications) {
+	public FixUpTask createFixUpTask(String description, String address, Double maxPrice, Date realizationTime, Warranty warranty, Collection<Phase> phases, Category category, Collection<Complaint> complaints, Collection<Application> applications) {
 		Customer loggedCustomer = this.securityAndCustomer();
 
-		FixUpTask fixUpTask = this.fixUpTaskService.create(description, address, maxPrice, realizationTime, warranties, phases, categories, complaints, applications);
+		FixUpTask fixUpTask = this.fixUpTaskService.create(description, address, maxPrice, realizationTime, warranty, phases, category, complaints, applications);
 
 		FixUpTask fixUpTaskSaved = this.fixUpTaskService.save(fixUpTask);
 

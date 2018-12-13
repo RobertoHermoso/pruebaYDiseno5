@@ -35,9 +35,7 @@ public class FixUpTaskService {
 		Date thisMoment = new Date();
 		thisMoment.setTime(thisMoment.getTime() - 1);
 
-		Collection<Warranty> warranties = null;
 		Collection<Phase> phases = null;
-		Collection<Category> categories = null;
 		Collection<Complaint> complaints = null;
 		Collection<Application> applications = null;
 
@@ -47,16 +45,15 @@ public class FixUpTaskService {
 		fixUpTask.setAddress("");
 		fixUpTask.setMaxPrice(0);
 		fixUpTask.setRealizationTime(null);
-		fixUpTask.setWarranties(warranties);
+		fixUpTask.setWarranty(null);
 		fixUpTask.setPhases(phases);
-		fixUpTask.setCategories(categories);
+		fixUpTask.setCategory(null);
 		fixUpTask.setComplaints(complaints);
 		fixUpTask.setApplications(applications);
 		return fixUpTask;
 	}
 
-	public FixUpTask create(String description, String address, Double maxPrice, Date realizationTime, Collection<Warranty> warranties, Collection<Phase> phases, Collection<Category> categories, Collection<Complaint> complaints,
-		Collection<Application> applications) {
+	public FixUpTask create(String description, String address, Double maxPrice, Date realizationTime, Warranty warranty, Collection<Phase> phases, Category category, Collection<Complaint> complaints, Collection<Application> applications) {
 		FixUpTask fixUpTask = new FixUpTask();
 		Date thisMoment = new Date();
 		thisMoment.setTime(thisMoment.getTime() - 1);
@@ -67,9 +64,9 @@ public class FixUpTaskService {
 		fixUpTask.setAddress(address);
 		fixUpTask.setMaxPrice(maxPrice);
 		fixUpTask.setRealizationTime(realizationTime);
-		fixUpTask.setWarranties(warranties);
+		fixUpTask.setWarranty(warranty);
 		fixUpTask.setPhases(phases);
-		fixUpTask.setCategories(categories);
+		fixUpTask.setCategory(category);
 		fixUpTask.setComplaints(complaints);
 		fixUpTask.setApplications(applications);
 

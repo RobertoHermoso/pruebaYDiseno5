@@ -9,7 +9,7 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,9 +33,9 @@ public class FixUpTask extends DomainEntity {
 	private Date					realizationTime;
 
 	private Collection<Application>	applications;
-	private Collection<Category>	categories;
+	private Category				category;
 	private Collection<Phase>		phases;
-	private Collection<Warranty>	warranties;
+	private Warranty				warranty;
 	private Collection<Complaint>	complaints;		//opt
 
 
@@ -108,16 +108,6 @@ public class FixUpTask extends DomainEntity {
 		this.applications = applications;
 	}
 
-	@NotNull
-	@ManyToMany
-	public Collection<Category> getCategories() {
-		return this.categories;
-	}
-
-	public void setCategories(final Collection<Category> categories) {
-		this.categories = categories;
-	}
-
 	@Valid
 	@OneToMany(cascade = CascadeType.ALL)
 	public Collection<Phase> getPhases() {
@@ -128,16 +118,6 @@ public class FixUpTask extends DomainEntity {
 		this.phases = phases;
 	}
 
-	@NotNull
-	@OneToMany
-	public Collection<Warranty> getWarranties() {
-		return this.warranties;
-	}
-
-	public void setWarranties(final Collection<Warranty> warranties) {
-		this.warranties = warranties;
-	}
-
 	@Valid
 	@OneToMany(cascade = CascadeType.ALL)
 	public Collection<Complaint> getComplaints() {
@@ -146,6 +126,24 @@ public class FixUpTask extends DomainEntity {
 
 	public void setComplaints(final Collection<Complaint> complaints) {
 		this.complaints = complaints;
+	}
+
+	@ManyToOne(optional = false)
+	public Category getCategory() {
+		return this.category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	@ManyToOne(optional = false)
+	public Warranty getWarranty() {
+		return this.warranty;
+	}
+
+	public void setWarranty(Warranty warranty) {
+		this.warranty = warranty;
 	}
 
 }
