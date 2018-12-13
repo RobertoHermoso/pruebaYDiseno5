@@ -16,6 +16,7 @@
 	<form:hidden path ="version"/>
 	<form:hidden path ="moment"/>
 	<form:hidden path ="writtenBy"/>
+
 	
 	<form:label path="comments">
 		<spring:message code="endorsment.comments" />
@@ -32,6 +33,7 @@
 	</form:select>
 	<form:errors cssClass="error" path="customers"/>
 	
+	<input type="submit" <jstl:if test="${endorsment.id != 0}"><jstl:out value="disabled='disabled'"/></jstl:if>
 	<input type="submit" name="save" value="<spring:message code="customer.save" />" />
 
 	<input type="submit" <jstl:if test="${endorsment.id == 0}"><jstl:out value="disabled='disabled'"/></jstl:if>

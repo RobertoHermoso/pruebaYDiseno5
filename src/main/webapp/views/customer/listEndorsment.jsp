@@ -39,9 +39,18 @@
       <display:column property="moment" titleKey="endorsment.moment" sortable="true">
       		<jstl:out value="${endorsmentsList.moment}" />
       </display:column>
-      <display:column property="comments" titleKey="endorsment.comments" >
-      		<jstl:out value="${endorsmentsList.comments}" />
-      </display:column>
+      
+		<display:column titleKey="endorsment.comments">
+				<jstl:set var="commentsSize" value="${endorsment.comments.size()}" />
+				<spring:url var="attachmetsUrl" value="/comments/list.do?endorsmentId={compId}">
+							<spring:param name="compId" value="${endorsment.id}"/>
+				</spring:url>
+				<a href="${commentsUrl}">
+							<spring:message var ="viewComments1" code="endorsment.viewComments" />
+							<jstl:out value="$viewComments1}(${commentsSize})" />		
+				</a>
+		</display:column> 
+      
       <display:column property="writtenBy" titleKey="endorsment.writtenBy" >
       		<jstl:out value="${endorsmentsList.writtenBy}" />
       </display:column>
